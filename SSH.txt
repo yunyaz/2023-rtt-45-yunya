@@ -1,0 +1,7 @@
+
+Generate ssh key
+Command line
+ssh-keygen -t ed25519 -C “yunyazhang1986@gmail.com"
+
+eval "$(ssh-agent -s)”
+ssh-add ~/.ssh/id_ed25519
