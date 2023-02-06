@@ -1,9 +1,0 @@
-1) create a folder somewhere that you want to save your code to
-
-2) go to GitHub and create a new repository
-
-3) goto the repository and under the code tab click clone (green button)
-
-4) copy the ssh url
-
-5) goto sourcetree and clone the repository and select your new folder
