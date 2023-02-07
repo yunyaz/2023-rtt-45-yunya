@@ -1,4 +1,4 @@
-package class_examples;
+package classExamples;
 
 import java.util.Scanner;
 
