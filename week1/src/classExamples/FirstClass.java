@@ -35,7 +35,35 @@ public class FirstClass {
 		System.out.println("My name is " + name);
 		
 		input.close();
+		
+		FirstClass problem = new FirstClass();
+		problem.forLoop();
 
 	}
+	
+	public void forLoop() {
+		for (int i = 10; i <= 30; i++) {
+			if (i % 2 == 1) {
+				continue;
+			}
+			System.out.println(i);
+		}
+		
+		System.out.println("=========");
+		
+		for (int i = 10; i >= 1; i--) {
+			System.out.println(i);
+		}
+		
+		System.out.println("=========");
+		
+		for (int i = 10; i <= 30; i++) {
+			if (i % 3 == 0) {
+				System.out.println(i);
+				break;
+			}
+		}
+	}
+
 
 }
