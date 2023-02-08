@@ -1,4 +1,4 @@
-package practice.variables;
+package assignment.variables;
 
 public class CoreJavaVariables {
 
