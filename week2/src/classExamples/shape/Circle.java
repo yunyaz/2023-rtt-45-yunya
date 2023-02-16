@@ -2,8 +2,8 @@ package classExamples.shape;
 
 public class Circle extends Shape {
 	
-	private static final double PI = Math.PI;
-	private double radius;
+	double PI = Math.PI;
+	double radius;
 	
 
 	public void setRadius(double radius) {

@@ -2,6 +2,7 @@ package example.coffee;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -38,6 +39,38 @@ public class CoffeeShop {
 		menuItems.add(item4);
 
 		menuItems.add(new MenuItem("Egg Sandwich", 14.99, 8));
+		
+		menuItems.sort(new Comparator<MenuItem>() {
+
+			@Override
+			public int compare(MenuItem o1, MenuItem o2) {
+				Double price1 = o1.getPrice();
+				Double price2 = o2.getPrice();
+				
+				return price1.compareTo(price2);
+			}
+			
+		});
+		
+//		menuItems.sort(new Comparator<MenuItem>() {
+//
+//			@Override
+//			public int compare(MenuItem o1, MenuItem o2) {
+//				String name1 = o1.getName();
+//				String name2 = o2.getName();
+//				
+//				return name1.compareTo(name2);
+//			}
+//			
+//		});
+		
+//		menuItems.sort((a, b) -> (int)a.getPrice() - (int)b.getPrice());
+		
+//		menuItems.sort((a, b) -> ((Double)a.getPrice()).compareTo((Double)b.getPrice()));
+		
+//		menuItems.sort((a, b) -> a.getName().compareTo(b.getName()));
+		
+		
 	}
 
 	public void printMenuItems() {
