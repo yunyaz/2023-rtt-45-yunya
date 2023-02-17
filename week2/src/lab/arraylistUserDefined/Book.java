@@ -1,4 +1,4 @@
-package lab.arraylist.userDefined;
+package lab.arraylistUserDefined;
 
 public class Book {
 	private int number;

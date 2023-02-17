@@ -1,5 +1,8 @@
 package assignment.interfaces;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LibraryInterfaceDemo {
 
 	public static void main(String[] args) {
@@ -33,7 +36,54 @@ public class LibraryInterfaceDemo {
 		adult.requestBook();
 		adult.setBookType("Fiction");
 		adult.requestBook();
-
+		
+		System.out.println("------ ArrayList ------");
+		
+		KidUser sam = new KidUser();
+		sam.setAge(10);
+		
+		KidUser john = new KidUser();
+		john.setAge(5);
+		
+		AdultUser david = new AdultUser();
+		david.setAge(25);
+		
+		AdultUser steven = new AdultUser();
+		steven.setAge(30);
+		
+		List<LibraryUser> users = new ArrayList<>();
+		users.add(sam);
+		users.add(david);
+		users.add(john);
+		users.add(steven);
+		
+		
+		// can not use this to directly print out users
+		// it will print out the memory address for the each user object in users
+//		System.out.println(users);
+		
+		
+		// need to use for loop to go through the users list
+		// because need to use "users.get(i)" to access the individual "registerAccount()" method
+		
+//		for (int i = 0; i < users.size(); i++) {
+//			users.get(i).registerAccount();
+//		}
+		
+		// or can instantiate an object
+		// then can call the method that is associated with the object to print out
+		LibraryInterfaceDemo demo = new LibraryInterfaceDemo();
+		demo.printList(users);
+	}
+	
+	
+	// the parameter type that passed in is "List<LibraryUser>"
+	// if declare as "ArrayList<LibraryUser> users = new ArrayList<>()" on line 54, 
+	// then need to pass in "ArrayList<LibraryUser>"
+	public void printList(List<LibraryUser> users) {
+		for (int i = 0; i < users.size(); i++) {
+			users.get(i).registerAccount();
+		}
 	}
 
 }

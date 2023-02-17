@@ -1,4 +1,4 @@
-package lab.arraylist.method;
+package lab.arraylistMethod;
 
 import java.util.ArrayList;
 import java.util.List;

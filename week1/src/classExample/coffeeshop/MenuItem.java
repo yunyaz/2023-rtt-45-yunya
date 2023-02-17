@@ -1,4 +1,4 @@
-package example.coffee;
+package classExample.coffeeshop;
 
 public class MenuItem {
 	
