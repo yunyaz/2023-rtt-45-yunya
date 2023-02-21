@@ -20,7 +20,7 @@ public class ArrayLibraryMain {
 		} catch(NegativePositionException npe) {
 			System.out.println("Negative Position Exception " + npe.getMessage());
 		} catch(PositionTooLargeException ptle) {
-			System.out.println("Negative Position Exception " + ptle.getMessage());
+			System.out.println("Position Too Large Exception " + ptle.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
