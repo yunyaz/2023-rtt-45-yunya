@@ -39,7 +39,7 @@ public class Question2 {
 	}
 	
 	public void calculateAverage(int[] arr) {
-		int sum = 0;
+		double sum = 0;
 		for (int num : arr) {
 			sum += num;
 		}

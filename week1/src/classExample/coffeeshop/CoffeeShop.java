@@ -40,22 +40,26 @@ public class CoffeeShop {
 
 		menuItems.add(new MenuItem("Egg Sandwich", 14.99, 8));
 		
-		menuItems.sort(new Comparator<MenuItem>() {
+		menuItems.sort(Comparator.comparing(MenuItem::getPrice));
 
-			@Override
-			public int compare(MenuItem o1, MenuItem o2) {
-				Double price1 = o1.getPrice();
-				Double price2 = o2.getPrice();
-				
-				// ascending order
-				return price1.compareTo(price2);
-				
-//				// descending order
-//				return price2.compareTo(price1);
-				
-			}
-			
-		});
+		
+//		menuItems.sort(new Comparator<MenuItem>() {
+//
+//			@Override
+//			public int compare(MenuItem o1, MenuItem o2) {
+//				Double price1 = o1.getPrice();
+//				Double price2 = o2.getPrice();
+//				
+//				// ascending order
+//				return price1.compareTo(price2);
+//				
+////				// descending order
+////				return price2.compareTo(price1);
+//				
+//			}
+//			
+//		});
+	
 		
 //		menuItems.sort(new Comparator<MenuItem>() {
 //
