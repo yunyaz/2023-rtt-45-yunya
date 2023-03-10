@@ -1,14 +1,9 @@
-package hibernate;
+package app;
 
-import java.util.List;
+import controller.CustomerDAO;
+import model.Customer;
 
-import javax.persistence.TypedQuery;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-
-public class HibernateExample {
+public class CustomerExample {
 
 	public static void main(String[] args) {
 		

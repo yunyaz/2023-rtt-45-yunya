@@ -1,14 +1,22 @@
-package hibernate;
+package app;
 
 import java.time.LocalDate;
+import java.util.Date;
 
-public class OneToManyExample {
+import controller.CustomerDAO;
+import controller.EmployeeDAO;
+import controller.PaymentDAO;
+import model.Customer;
+import model.Payment;
+
+public class EmployeeExample {
 
 	public static void main(String[] args) {
 
 		CustomerDAO customerDao = new CustomerDAO();
 		EmployeeDAO employeeDao = new EmployeeDAO();
 		PaymentDAO paymentDao = new PaymentDAO();
+		
 		
 //		Employee e = employeeDao.findById(1166);
 //		System.out.println(e);
@@ -42,13 +50,17 @@ public class OneToManyExample {
 		
 		Payment payment = new Payment();
 		payment.setCheckNumber("AB123456");
-		payment.setPaymentDate(LocalDate.of(2023, 03, 07));
+		payment.setPaymentDate(new Date());
+//		payment.setPaymentDate(LocalDate.of(2022, 1, 9));
 		payment.setAmount(1234.56);
 		payment.setCustomer(c);
 		
 		paymentDao.insert(payment);
 		
-
+//		c.getPayments().add(payment);
+//		CustomerDao.update(c);
+		
+		
 	}
 
 }

@@ -8,7 +8,7 @@
         <property name="hibernate.hbm2ddl.auto"> validate </property>
          <!-- Database connection settings -->
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/classicmodels-fixed</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/blockbuster</property>
         <property name="connection.username">root</property>
         <property name="connection.password">password</property>
         <!-- MySQL DB dialect -->
@@ -17,12 +17,8 @@
         <property name="hibernate.show_sql" >true </property>
         <property name="hibernate.format_sql" >true </property>
         <!--   Mapping entity file -->
-        <mapping class="hibernate.Customer"/>
-        <mapping class="hibernate.Employee"/>
-        <mapping class="hibernate.Payment"/>
-        <mapping class="hibernate.Order"/>
-        <mapping class="hibernate.OrderDetail"/>
-        <mapping class="hibernate.Product"/>
-        <mapping class="hibernate.ProductLine"/>
+        <mapping class="model.User"/>
+        <mapping class="model.Movie"/>
+        <mapping class="model.MovieRental"/>
     </session-factory>
 </hibernate-configuration>

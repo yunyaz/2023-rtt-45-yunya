@@ -1,64 +1,61 @@
-package hibernate;
+package controller;
 
-import java.util.List;
-
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class EmployeeDAO {
-	
-	
-	public void insert(Employee employee) {
+import model.Order;
+
+public class OrderDAO {
+
+	public void insert(Order order) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		
 		session.getTransaction().begin();
-		session.save(employee);
+		session.save(order);
 		session.getTransaction().commit();
 		session.close();
 		factory.close();
 	}
 
-	public void update(Employee employee) {
+	public void update(Order order) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		
 		session.getTransaction().begin();
-		session.merge(employee);
+		session.merge(order);
 		session.getTransaction().commit();
 		session.close();
 		factory.close();
 	}
 	
-	public void delete(Employee employee) {
+	public void delete(Order order) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		
 		session.getTransaction().begin();
-		session.delete(employee);
+		session.delete(order);
 		session.getTransaction().commit();
 		session.close();
 		factory.close();
 	}
 	
 	
-	public Employee findById(Integer id) {
+	public Order findById(Integer id) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		
-		String hql = "FROM Employee e where e.id = :idParam";
-		TypedQuery<Employee> query = session.createQuery(hql,Employee.class);
+		String hql = "FROM Order o where o.id = :idParam";
+		TypedQuery<Order> query = session.createQuery(hql,Order.class);
 		query.setParameter("idParam", id);
-		Employee result = query.getSingleResult();
+		Order result = query.getSingleResult();
 		
 		session.close();
 		factory.close();
 		
 		return result;
 	}
-	
 }
