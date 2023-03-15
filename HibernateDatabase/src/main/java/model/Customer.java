@@ -80,5 +80,44 @@ public class Customer {
 	@OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Order> orders = new ArrayList<Order>();
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((contactFirstname == null) ? 0 : contactFirstname.hashCode());
+		result = prime * result + ((contactLastname == null) ? 0 : contactLastname.hashCode());
+		result = prime * result + ((customerName == null) ? 0 : customerName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Customer other = (Customer) obj;
+		if (contactFirstname == null) {
+			if (other.contactFirstname != null)
+				return false;
+		} else if (!contactFirstname.equals(other.contactFirstname))
+			return false;
+		if (contactLastname == null) {
+			if (other.contactLastname != null)
+				return false;
+		} else if (!contactLastname.equals(other.contactLastname))
+			return false;
+		if (customerName == null) {
+			if (other.customerName != null)
+				return false;
+		} else if (!customerName.equals(other.customerName))
+			return false;
+		return true;
+	}
+	
+	
+
 
 }
