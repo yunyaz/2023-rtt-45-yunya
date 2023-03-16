@@ -18,6 +18,15 @@ public class SMSRunner {
 		courseDao = new CourseDAO();
 		studentDao = new StudentDAO();
 	}
+	
+	// hluckham0@google.ru
+	// X1uZcoIh0dj
+	
+	// sbowden1@yellowbook.com
+	// SJc4aWSU
+	
+	// qllorens2@howstuffworks.com
+	// W6rJuxd
 
 	public static void main(String[] args) {
 		SMSRunner sms = new SMSRunner();

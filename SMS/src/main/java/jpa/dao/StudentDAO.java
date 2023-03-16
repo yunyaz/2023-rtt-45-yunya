@@ -68,7 +68,7 @@ public class StudentDAO {
 		StudentCourse newSC = new StudentCourse();
 		newSC.setStudent(student);
 		newSC.setCourse(newCourse);
-		System.out.println("\nYou have registered the class successfully.");
+		System.out.println("\nYou registered the class successfully.");
 		
 		session.getTransaction().begin();
 		session.save(newSC);
