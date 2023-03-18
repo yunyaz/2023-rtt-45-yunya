@@ -44,7 +44,6 @@ public class SMSRunner {
 			}
 		} catch (Exception e) {
 			System.out.println("\nWrong input. Please relaunch and make sure the input is correct.\n");
-			e.printStackTrace();
 		} finally {
 			sms.scanner.close();
 		}
