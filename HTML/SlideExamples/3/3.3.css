@@ -1,0 +1,14 @@
+.outer{
+    background-color: rgb(172, 228, 18);
+    width: 1780px;
+    height: 920px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inner {
+    width: 400px;
+    height: 600px;
+    background-color: white;   
+}

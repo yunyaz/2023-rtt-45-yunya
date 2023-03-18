@@ -1,0 +1,14 @@
+div {
+    margin-top: 10px;
+    background-color: red;
+    width: 300px;
+    height: 300px;
+    display: inline-block;
+}
+
+div div {
+    background-color: aqua;
+    width: 100px;
+    height: 100px;
+    display: block;
+}

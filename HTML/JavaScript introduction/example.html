@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script>
+    console.log("This is a test script.");
+    console.log('"3" == 3 ' + ("3" == 3));
+    console.log('3 == 3 ' + (3 == 3));
+    console.log('"3" == "3" ' + ("3" == "3"));
+    console.log('"3" === 3 ' + ("3" === 3));
+</script>
+
+<script>
+    function customMessage(custom, times) {
+        for (let i = 0; i < times; i++) {
+            console.log(i, custom);
+        }
+    }
+    customMessage("Useful Message >.>", 5); 
+</script>
+
+<script>
+    function printProps(p) {
+        for (const o in p) {
+            console.log(o + ":" + p[o] + "\n");
+        }
+    }
+    const person = {
+        first_name: "Luke",
+        last_name: "Lance",
+        age: 23
+    };
+    printProps(person)
+</script>
+
+<script>
+    /*
+    var scope = "global"; // Declare scope global
+    function checkscope() {
+        var scope = "local"; //Declare scope local
+        return scope; // return local value
+    }
+    var result = checkscope();
+    console.log(result);
+    */
+</script>
+
+<script>
+    const scope = "global scope"; // A global variable
+    function checkscope() {
+        let scope = "local scope"; // A local variable
+        function nested() {
+            let scope = "nested scope"; // A nested scope of local variables
+            return scope; // Return the value in scope here
+        }
+        return nested();
+    }
+    const result = checkscope();
+    console.log(result);
+</script>
+
+
+
+
+
+<body>
+
+</body>
+
+</html>
