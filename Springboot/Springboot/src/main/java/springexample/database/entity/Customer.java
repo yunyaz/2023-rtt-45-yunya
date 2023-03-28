@@ -1,19 +1,9 @@
-package model;
+package springexample.database.entity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import jakarta.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -61,7 +51,7 @@ public class Customer {
 	@Column(name = "country")
 	private String country;
 
-	@Column(name = "salesRepEmployeeNumber", insertable = false, updatable = false)
+	@Column(name = "sales_rep_employee_id", insertable = false, updatable = false)
 	private Integer salesRepEmployeeNumber;
 
 	@Column(name = "credit_limit", columnDefinition = "decimal", precision = 10, scale = 2)
@@ -69,13 +59,14 @@ public class Customer {
 
 	@ToString.Exclude
 	@ManyToOne(fetch = FetchType.LAZY, optional = true, cascade = CascadeType.ALL)
-	@JoinColumn(name = "salesRepEmployeeNumber", nullable = true)
+	@JoinColumn(name = "sales_rep_employee_id", nullable = true)
 	private Employee employee;
 
 	@ToString.Exclude
 	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Payment> payments = new ArrayList<Payment>();
-	
+
+	/*
 	@ToString.Exclude
 	@OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Order> orders = new ArrayList<Order>();
@@ -115,7 +106,7 @@ public class Customer {
 		} else if (!customerName.equals(other.customerName))
 			return false;
 		return true;
-	}
+	}*/
 	
 	
 

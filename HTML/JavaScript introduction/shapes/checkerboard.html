@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script>
+    let width = prompt("Enter the width for a checker board");
+    let height = prompt("Enter the height for a checker board");
+    let checkerBoard = "";
+    for (let i = 0; i < height; i++) {
+        let row = "";
+        for (let j = 0; j < width; j++) {
+            if (i % 2 == 0) {
+                if (j % 2 == 0) {
+                    row += "*";
+                } else {
+                    row += " ";
+                }
+            } else {
+                if (j % 2 == 0) {
+                    row += " ";
+                } else {
+                    row += "*";
+                }
+            }
+        }
+        checkerBoard = checkerBoard + row + "\n";
+    }
+    console.log(checkerBoard);
+</script>
+
+<body>
+    
+</body>
+</html>

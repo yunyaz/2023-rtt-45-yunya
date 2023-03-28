@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script>
+    let width = prompt("Enter the width for a rectangle");
+    let height = prompt("Enter the height for a rectangle");
+    let rectangle = "";
+    for (let i = 0; i < height; i++) {
+        let row = "";
+        for (let j = 0; j < width; j++) {
+            row += "*";
+        }
+        rectangle = rectangle + row + "\n";
+    }
+    console.log(rectangle);
+</script>
+
+<body>
+    
+</body>
+</html>

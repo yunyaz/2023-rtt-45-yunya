@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script>
+    let input = prompt("Enter a formula");
+    let formulaArr = input.split(" ").join("").split("+").join(" ").split("-").join(" ").split(" ");
+    let symbols = "";
+    for (let ch of input) {
+        if (ch === "+" || ch === "-") {
+            symbols += ch;
+        }
+    }
+    let sum = parseInt(formulaArr[0]);
+    for(let i = 1; i < formulaArr.length; i++) {
+        if (symbols.charAt(i - 1) === "+") {
+            sum += parseInt(formulaArr[i]);
+        } else {
+            sum -= parseInt(formulaArr[i]);
+        }
+    }
+    console.log(sum);
+</script>
+
+<body>
+    
+</body>
+</html>

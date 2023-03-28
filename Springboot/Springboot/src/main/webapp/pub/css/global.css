@@ -1,0 +1,27 @@
+h2 {
+    color: rgba(0, 0, 0, 0.5);
+    background-color: yellow;
+}
+
+body {
+    font-family: Oswald;
+}
+
+h3{
+    text-align: center;
+}
+
+td {
+    padding-top:10px;
+    padding-left: 10px;
+}
+
+.button {
+    text-align: center;
+}
+
+.container {
+    align-items: center;
+    width: 800px;
+    margin-top: 100px;
+}

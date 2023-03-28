@@ -8,19 +8,26 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Slf4j
 @Controller
-public class IndexController {
+public class SlashController {
 
-    @RequestMapping(value="/index.html", method= RequestMethod.GET)
+    @RequestMapping(value="/index", method= RequestMethod.GET)
     public ModelAndView index() {
         log.info("In the index controller method");
         ModelAndView response = new ModelAndView("index");
         return response;
     }
 
-    @RequestMapping(value="/signup.html", method= RequestMethod.GET)
+    @RequestMapping(value="/signup", method= RequestMethod.GET)
     public ModelAndView signup() {
         log.info("In the signup controller method");
         ModelAndView response = new ModelAndView("signup");
+        return response;
+    }
+
+    @RequestMapping(value="/bootstrap", method= RequestMethod.GET)
+    public ModelAndView bootstrap() {
+        log.info("In the bootstrap controller method");
+        ModelAndView response = new ModelAndView("bootstrap");
         return response;
     }
 }

@@ -1,0 +1,85 @@
+
+let submitBtn = document.getElementById("submitBtn");
+
+submitBtn.addEventListener("click", () => {
+    let emailInput = document.getElementById("email");
+    let emailText = document.getElementById("emailHelp");
+    checkEmail(emailInput, emailText);
+
+    let passwordInput = document.getElementById("password");
+    let passwordText = document.getElementById("passwordHelp");
+    let confirmPasswordInput = document.getElementById("confirmPassword");
+    let confirmPasswordText = document.getElementById("confirmPasswordHelp");
+    checkPasswordFormat(passwordInput, passwordText, confirmPasswordInput, confirmPasswordText);
+})
+
+function checkEmail(emailInput, emailText) {
+    let emailValue = emailInput.value;
+    if (emailValue === '') {
+        let msg = "Please enter your email";
+        markRed(emailInput, emailText, msg);
+    } else {
+        emailText.style.cssText = "color:grey";
+    }
+}
+
+function checkPasswordFormat(passwordInput, passwordText, confirmPasswordInput, confirmPasswordText) {
+    let passwordValue = passwordInput.value;
+    let msg = "";
+    if (passwordValue === '') {
+        msg = "Please enter your password<br>" + "Password must contain at least one uppercase letter,"
+        + "one lowercase letter, one digit, and one of !@#$ symbols";
+        markRed(passwordInput, passwordText, msg);
+    } else if (!passwordValue.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$])[A-Za-z\d!@#$]{8,}$/)) {
+        msg = "Please enter your password in correct format<br>" + "Password must contain at least one uppercase letter,"
+        + "one lowercase letter, one digit, and one of !@#$ symbols";
+        markRed(passwordInput, passwordText, msg);
+    } else {
+        checkPasswordMatch(passwordInput, passwordText, confirmPasswordInput, confirmPasswordText);
+    }
+}
+
+function checkPasswordMatch(passwordInput, passwordText, confirmPasswordInput, confirmPasswordText) {
+    let passwordValue = passwordInput.value;
+    let confirmPasswordValue = confirmPasswordInput.value;
+    let msg = "";
+    if (passwordValue !== confirmPasswordValue) {
+        msg = passwordText.innerHTML;
+        markRed(passwordInput, passwordText, msg);
+
+        msg = "Password does not match";
+        markRed(confirmPasswordInput, confirmPasswordText, msg);
+    }
+}
+
+function markRed(input, text, message) {
+    input.classList.add("is-invalid");
+    text.innerHTML = message;
+    text.style.cssText = "color:red";
+    input.value = "";
+}
+
+let cancelBtn = document.getElementById("cancelBtn");
+
+cancelBtn.addEventListener("click", () => {
+    let emailInput = document.getElementById("email");
+    let emailText = document.getElementById("emailHelp");
+    let msg = "We'll never share your email with anyone else";
+    removeRed(emailInput, emailText, msg);
+    
+    let passwordInput = document.getElementById("password");
+    let passwordText = document.getElementById("passwordHelp");
+    msg = "Password must contain at least one uppercase letter,"
+        + "one lowercase letter, one digit, and one of !@#$ symbols";
+    removeRed(passwordInput, passwordText, msg);
+
+    let confirmPasswordInput = document.getElementById("confirmPassword");
+    confirmPasswordInput.classList.remove("is-invalid");
+})
+
+function removeRed(input, text, message) {
+    input.classList.remove("is-invalid");
+    input.value = "";
+    text.innerHTML = message;
+    text.style.cssText = "color:grey";
+}

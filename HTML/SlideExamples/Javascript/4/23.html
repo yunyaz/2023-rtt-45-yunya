@@ -1,0 +1,20 @@
+<html>
+
+<head>
+    <script type="text/javascript">
+        function showcommentform() {
+            var data = "Your location is USA";
+            document.getElementById('mylocation').innerHTML = data;
+        }
+    </script>
+</head>
+
+<body>
+    <form name="myForm">
+        <input type="button" value="Show My Location" onclick="showcommentform()">
+        <h3>Your location will show below, please click on the button </h3>
+        <div id="mylocation"></div>
+    </form>
+</body>
+
+</html>

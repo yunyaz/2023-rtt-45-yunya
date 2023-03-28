@@ -1,0 +1,57 @@
+body {
+    font-family: 'Alkatra', cursive;
+}
+
+.navbar-brand {
+    background: linear-gradient(to right, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #f9a825, #ff5722);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 30px;
+}
+
+.navbar {
+    background-color: #e7d8ef;
+}
+
+.nav-link,
+#accountDropdown {
+    font-size: 18px;
+}
+
+#footer {
+    font-size: 18px;
+}
+
+#submitBtn, #addCartBtn {
+    background-color: #cd8eee;
+}
+
+.carousel-inner {
+    justify-content: center;
+}
+
+#tableRound1 {
+    width: 600px;
+    height: 250px;
+    table-layout: fixed;
+    border: 2px solid grey;
+    text-align: center;
+    margin-left: 100px;
+}
+
+#tableRound2 {
+    width: 600px;
+    height: 350px;
+    table-layout: fixed;
+    border: 2px solid grey;
+    text-align: center;
+    margin-left: 100px;
+}
+
+th, td {
+    border: 2px solid grey;
+}
+
+.cakeImages {
+    height: 300px;
+}

@@ -16,10 +16,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Serif+Lao:wght@200&family=Oswald:wght@500&family=Raleway:wght@800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="./global.css">
 </head>
 
-<body>
+<body style="background-color: #e1e7eb">
     <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-light bg-light" style="box-shadow: 0 4px 2px -2px gray">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Happy-Mart</a>
@@ -33,7 +32,7 @@
                         <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./signup.html">Food</a>
+                        <a class="nav-link" href="signup.html">Signup</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./bootstrap.html">Cloth</a>
@@ -53,73 +52,135 @@
         </div>
     </nav>
 
-    <div class="container">
-        <h3 class="mb-4">New User Form</h3>
-        <div class="row justify-content-center">
-            <form class="col-9">
+    <section class="pt-5 pb-5" style="background-color: rgb(216, 222, 227);">
+        <div class="container text-center">
+            <h2>Create New Account</h2>
+        </div>
+
+    </section>
+
+    <script>
+        function cancelClicked() {
+            let emailInput = document.getElementById("email");
+            emailInput.classList.remove("is-invalid");
+            emailInput.value = "";
+            let emailText = document.getElementById("emailHelp");
+            emailText.innerHTML = "We'll never share your email with anyone else";
+            emailText.style.cssText = "color:grey";
+
+            let passwordInput = document.getElementById("password");
+            passwordInput.classList.remove("is-invalid");
+            passwordInput.value = "";
+            let passwordText = document.getElementById("passwordHelp");
+            passwordText.innerHTML = "Password must contain at least one uppercase letter,"
+                + "one lowercase letter, one digit, and one of !@#$ symbols";
+            passwordText.style.cssText = "color:grey";
+
+            let confirmPasswordInput = document.getElementById("confirmPassword");
+            confirmPasswordInput.classList.remove("is-invalid");
+        }
+        function formSubmit() {
+            let emailInput = document.getElementById("email");
+            checkEmail(emailInput);
+
+            let passwordInput = document.getElementById("password");
+            let confirmPasswordInput = document.getElementById("confirmPassword");
+            checkPasswordFormat(passwordInput, confirmPasswordInput);
+        }
+
+        function checkEmail(emailInput) {
+            let emailValue = emailInput.value;
+            let emailText = document.getElementById("emailHelp");
+            if (emailValue === '') {
+                emailInput.classList.add("is-invalid");
+
+                emailText.innerHTML = "Please enter your email";
+                emailText.style.cssText = "color:red";
+            } else {
+                emailText.style.cssText = "color:grey";
+            }
+        }
+
+        function checkPasswordFormat(passwordInput, confirmPasswordInput) {
+            let passwordValue = passwordInput.value;
+            let confirmPasswordValue = confirmPasswordInput.value;
+            if (passwordValue === '') {
+                passwordInput.classList.add("is-invalid");
+
+                let passwordText = document.getElementById("passwordHelp");
+                passwordText.innerHTML = "Please enter your password<br>" + passwordText.innerHTML;
+                passwordText.style.cssText = "color:red";
+            } else if (!passwordValue.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$])[A-Za-z\d!@#$]{8,}$/)) {
+                passwordInput.classList.add("is-invalid");
+
+                let passwordText = document.getElementById("passwordHelp");
+                passwordText.innerHTML = "Please enter your password in correct format<br>" + passwordText.innerHTML;
+                passwordText.style.cssText = "color:red";
+                passwordInput.value = "";
+            } else {
+                checkPasswordMatch(passwordInput, confirmPasswordInput);
+            }
+        }
+
+        function checkPasswordMatch(passwordInput, confirmPasswordInput) {
+            let passwordValue = passwordInput.value;
+            let confirmPasswordValue = confirmPasswordInput.value;
+
+            if (passwordValue !== confirmPasswordValue) {
+                passwordInput.classList.add("is-invalid");
+                confirmPasswordInput.classList.add("is-invalid");
+
+                let passwordText = document.getElementById("passwordHelp");
+                passwordText.style.cssText = "color:red";
+                passwordInput.value = "";
+
+                let confirmPasswordText = document.getElementById("confirmPasswordHelp");
+                confirmPasswordText.innerHTML = "Password does not match";
+                confirmPasswordText.style.cssText = "color:red";
+                confirmPasswordInput.value = "";
+            }
+        }
+    </script>
+
+    <section class="mt-5 pt-5 mb-5 pb-5">
+        <div class="container" style="width: 50%;">
+            <form>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
                 <div class="mb-3">
                     <label for="firstName" class="form-label">First Name</label>
-                    <input type="text" class="form-control" id="firstName">
+                    <input type="text" class="form-control" id="firstName" aria-describedby="firstNameHelp">
+                    <div id="firstNameHelp" class="form-text"></div>
                 </div>
                 <div class="mb-3">
                     <label for="lastName" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" id="firstName">
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="email">
+                    <input type="text" class="form-control" id="lastName" aria-describedby="lastNameHelp">
+                    <div id="lastNameHelp" class="form-text"></div>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password">
+                    <input type="password" class="form-control" id="password" aria-describedby="passwordHelp">
+                    <div id="passwordHelp" class="form-text">Password must contain at least one uppercase letter, one
+                        lowercase letter, one digit, and one of !@#$ symbols</div>
                 </div>
                 <div class="mb-3">
-                    <label for="confirmPassword" class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control" id="confirmPassword">
+                    <label for="confirmPassword" class="form-label">*Confirm Password</label>
+                    <input type="password" class="form-control" id="confirmPassword"
+                        aria-describedby="confirmPasswordHelp">
+                    <div id="confirmPasswordHelp" class="form-text"></div>
                 </div>
-
-                <div>
-                    <label for="country" class="form-label">Country</label>
-                </div>
-                <select class="form-select mb-4">
-                    <option selected></option>
-                    <option value="USA">USA</option>
-                    <option value="Canada">Canada</option>
-                    <option value="Mexico">Mexico</option>
-                </select>
-
-                <div class="mb-3">
-                    <label for="gender" class="form-label pe-5">Gender</label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="male" id="male" value="male">
-                        <label class="form-check-label" for="male">Male</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="female" id="female" value="female">
-                        <label class="form-check-label" for="female">Female</label>
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="favColor" class="form-label pe-5">Favorite Color</label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="red" value="red">
-                        <label class="form-check-label" for="red">Red</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="green" value="green">
-                        <label class="form-check-label" for="green">Green</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="blue">
-                        <label class="form-check-label" for="blue">Blue</label>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-primary mt-3 me-3" onclick="formSubmit()">Create Account</button>
+                <button type="button" class="btn btn-secondary mt-3" onclick="cancelClicked()">Cancel</button>
             </form>
+
         </div>
 
-    </div>
+    </section>
+
+
 
 </body>
 

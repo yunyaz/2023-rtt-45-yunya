@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+</head>
+
+<body>
+    <ul>
+        <li><u><b>More generally, elements can be selected based on
+                    attribute values</u></b>
+        </li>
+        <li>
+            <font color="green"><b><u>Selectors can also specify
+                        document structure</u></b></font>
+        </li>
+        <li>
+            <font color="blue"><u>These basic selectors can be
+                    combined</u></font>
+        </li>
+        <li>
+            <font color="green"><b><u>Selectors can be combined to
+                        select multiple elements or multiple sets of
+                        elements</u></b></font>
+        </li>
+    </ul>
+    <script>
+        var q1 = document.querySelectorAll('font>b>u');
+        for (var i in q1) {
+            console.log(q1[i]);
+        }
+    </script>
+</body>
+
+</html>

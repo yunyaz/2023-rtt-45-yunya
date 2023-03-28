@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script>
+    let input = prompt("Enter formulas");
+    let formulas = input.split(";");
+    formulas.splice(formulas.length - 1, 1);
+    let formulasArr = [];
+    for (let i = 0; i < formulas.length; i++) {
+        formulasArr[i] = formulas[i].split(" ").join("").split("+").join(" ").split("-").join(" ").split(" ");
+        console.log(formulasArr[i]);
+    }
+    let symbols = [];
+    for (let i = 0; i < formulas.length; i++) {
+        symbols[i] = [];
+        for (let ch of formulas[i]) {
+            if (ch === "+" || ch === "-") {
+                symbols[i].push(ch);
+            }
+        }
+        console.log(symbols[i]);
+    }
+    let result = [];
+    for (let i = 0; i < formulas.length; i++) {
+        result[i] = parseInt(formulasArr[i][0]);
+        for(let j = 1; j < formulasArr[i].length; j++) {
+            if (symbols[i][j - 1] === "+") {
+                result[i] += parseInt(formulasArr[i][j]);
+            } else {
+                result[i] -= parseInt(formulasArr[i][j]);
+            }
+        }
+    }
+    console.log(result);
+</script>
+
+<body>
+    
+</body>
+</html>
