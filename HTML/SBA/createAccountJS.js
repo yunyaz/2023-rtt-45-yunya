@@ -15,11 +15,15 @@ submitBtn.addEventListener("click", () => {
 
 function checkEmail(emailInput, emailText) {
     let emailValue = emailInput.value;
-    if (emailValue === '') {
-        let msg = "Please enter your email";
+    let msg = "";
+    if (emailValue === "") {
+        msg = "Please enter your email";
+        markRed(emailInput, emailText, msg);
+    } else if (!emailValue.match(/^\S+@\S+$/)) {
+        msg = "Please enter a valid email";
         markRed(emailInput, emailText, msg);
     } else {
-        emailText.style.cssText = "color:grey";
+        removeRed(emailInput, emailText);
     }
 }
 
@@ -59,6 +63,8 @@ function markRed(input, text, message) {
     input.value = "";
 }
 
+
+
 let cancelBtn = document.getElementById("cancelBtn");
 
 cancelBtn.addEventListener("click", () => {
@@ -74,7 +80,9 @@ cancelBtn.addEventListener("click", () => {
     removeRed(passwordInput, passwordText, msg);
 
     let confirmPasswordInput = document.getElementById("confirmPassword");
-    confirmPasswordInput.classList.remove("is-invalid");
+    let confirmPasswordText = document.getElementById("confirmPasswordHelp");
+    msg = "";
+    removeRed(confirmPasswordInput, confirmPasswordText, msg);
 })
 
 function removeRed(input, text, message) {

@@ -27,3 +27,106 @@ shape.addEventListener("change", () => {
         }
     }
 })
+
+
+
+let submitBtn = document.getElementById("submitBtn");
+
+submitBtn.addEventListener("click", () => {
+    let nameInput = document.getElementById("name");
+    let nameText = document.getElementById("nameHelp");
+    checkName(nameInput, nameText);
+
+    let emailInput = document.getElementById("email");
+    let emailText = document.getElementById("emailHelp");
+    checkEmail(emailInput, emailText);
+
+    let dateInput = document.getElementById("eventDate");
+    let dateText = document.getElementById("dateHelp");
+    checkEventDate(dateInput, dateText);
+})
+
+function checkName(nameInput, nameText) {
+    let nameValue = nameInput.value;
+    let msg = "";
+    if (nameValue === "") {
+        msg = "Please enter your name";
+        markRed(nameInput, nameText, msg);
+    } else if (!nameValue.match(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/)) {
+        msg = "Please enter a valid name containing only letters";
+        markRed(nameInput, nameText, msg);
+    } else {
+        removeRed(nameInput, nameText);
+    }
+}
+
+function checkEmail(emailInput, emailText) {
+    let emailValue = emailInput.value;
+    let msg = "";
+    if (emailValue === "") {
+        msg = "Please enter your email";
+        markRed(emailInput, emailText, msg);
+    } else if (!emailValue.match(/^\S+@\S+$/)) {
+        msg = "Please enter a valid email";
+        markRed(emailInput, emailText, msg);
+    } else {
+        removeRed(emailInput, emailText);
+    }
+}
+
+function checkEventDate(dateInput, dateText) {
+    let dateValue = dateInput.value;
+    let event = new Date(dateValue);
+    let today = new Date();
+    let diffTime = event - today;
+    let diffDays = Math.ceil(diffTime / (24 * 60 * 60 * 1000));
+    
+    let msg = "";
+    if (dateValue === "") {
+        msg = "Please select a pickup date";
+        markRed(dateInput, dateText, msg);
+    } else if (diffDays < 14) {
+        msg = "Minimum of 14 days notice";
+        markRed(dateInput, dateText, msg);
+    } else {
+        removeRed(dateInput, dateText, msg)
+    }
+}
+
+function markRed(input, text, message) {
+    input.classList.add("is-invalid");
+    text.innerHTML = message;
+    text.style.cssText = "color:red";
+    input.value = "";
+}
+
+function removeRed(input, text) {
+    input.classList.remove("is-invalid");
+    text.style.cssText = "color:grey";
+}
+
+
+
+let cancelBtn = document.getElementById("cancelBtn");
+
+cancelBtn.addEventListener("click", () => {
+    let nameInput = document.getElementById("name");
+    let nameText = document.getElementById("nameHelp");
+    removeRedAndText(nameInput, nameText);
+
+    let emailInput = document.getElementById("email");
+    let emailText = document.getElementById("emailHelp");
+    removeRedAndText(emailInput, emailText);
+
+    let dateInput = document.getElementById("eventDate");
+    let dateText = document.getElementById("dateHelp");
+    removeRedAndText(dateInput, dateText);
+
+})
+
+function removeRedAndText(input, text) {
+    removeRed(input, text);
+    input.value = "";
+    text.innerHTML = "";
+}
+

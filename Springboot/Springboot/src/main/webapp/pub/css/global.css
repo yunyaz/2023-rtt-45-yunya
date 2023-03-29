@@ -12,7 +12,7 @@ h3{
 }
 
 td {
-    padding-top:10px;
+    padding-top: 10px;
     padding-left: 10px;
 }
 
@@ -20,8 +20,10 @@ td {
     text-align: center;
 }
 
-.container {
-    align-items: center;
-    width: 800px;
-    margin-top: 100px;
+.bg-dark-blue {
+    background-color: #c1d6f7;
+}
+
+.bg-light-blue {
+    background-color: #dce8fa;
 }

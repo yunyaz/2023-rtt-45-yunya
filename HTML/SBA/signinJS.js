@@ -12,11 +12,13 @@ submitBtn.addEventListener("click", () => {
 
 function checkEmail(emailInput, emailText) {
     let emailValue = emailInput.value;
-    if (emailValue === '') {
-        let msg = "Please enter your email";
+    let msg = "";
+    if (emailValue === "") {
+        msg = "Please enter your email";
         markRed(emailInput, emailText, msg);
-    } else {
-        emailText.style.cssText = "color:grey";
+    } else if (!emailValue.match(/^\S+@\S+$/)) {
+        msg = "Please enter a valid email";
+        markRed(emailInput, emailText, msg);
     }
 }
 
@@ -34,6 +36,8 @@ function markRed(input, text, message) {
     text.style.cssText = "color:red";
     input.value = "";
 }
+
+
 
 let cancelBtn = document.getElementById("cancelBtn");
 

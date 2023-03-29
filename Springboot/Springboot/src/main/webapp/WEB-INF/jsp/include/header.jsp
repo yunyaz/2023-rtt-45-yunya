@@ -13,10 +13,9 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Serif+Lao:wght@200&family=Oswald:wght@500&family=Raleway:wght@800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Lao:wght@200&family=Oswald:wght@500&family=Raleway:wght@800&display=swap"
             rel="stylesheet">
-    <link rel="stylesheet" href="./global.css">
+    <link rel="stylesheet" href="/pub/css/global.css">
 </head>
 
 <body style="background-color: #d9effd">
@@ -33,10 +32,13 @@
                     <a class="nav-link active" aria-current="page" href="index">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="signup">Signup</a>
+                    <a class="nav-link" href="/signup">Signup</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="bootstrap">Bootstrap</a>
+                    <a class="nav-link" href="/bootstrap">Bootstrap</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/employee_search">Employee Search</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
