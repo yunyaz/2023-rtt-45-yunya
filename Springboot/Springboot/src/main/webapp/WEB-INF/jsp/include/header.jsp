@@ -29,7 +29,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/index">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/signup">Signup</a>
@@ -37,17 +37,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/bootstrap">Bootstrap</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/employee_search">Employee Search</a>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">
-                        Account
+                        Employee
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="./signup.html">Sign Up</a></li>
-                        <li><a class="dropdown-item" href="#">Sign In</a></li>
+                        <li><a class="dropdown-item" href="/employee/search">Search</a></li>
+                        <li><a class="dropdown-item" href="/employee/create">Create</a></li>
                     </ul>
                 </li>
             </ul>

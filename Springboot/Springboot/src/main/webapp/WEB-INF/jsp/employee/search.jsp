@@ -10,7 +10,7 @@
 
 <section class="py-5 bg-light-blue">
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row text-center justify-content-center">
             <div class="col-5">
                 <form>
                     <div class="input-group mb-3">
@@ -35,19 +35,23 @@
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th scope="col">ID</th>
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Job Title</th>
+                    <th scope="col">Edit</th>
                 </tr>
             </thead>
             <tbody>
                 <c:forEach items="${employeesList}" var="emp">
                 <tr>
-                    <th scope="row">${emp.firstName}</th>
+                    <th><a href="/employee/detail/${emp.id}">${emp.id}</a></th>
+                    <td>${emp.firstName}</td>
                     <td>${emp.lastName}</td>
                     <td>${emp.email}</td>
                     <td>${emp.jobTitle}</td>
+                    <td><a href="/employee/edit/${emp.id}">Edit</a></td>
                 </tr>
                 </c:forEach>
             </tbody>

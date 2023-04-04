@@ -1,7 +1,7 @@
 
-let submitBtn = document.getElementById("submitBtn");
+let submitBtn = document.getElementsByClassName("submitBtn");
 
-submitBtn.addEventListener("click", () => {
+submitBtn[0].addEventListener("click", () => {
     let emailInput = document.getElementById("email");
     let emailText = document.getElementById("emailHelp");
     checkEmail(emailInput, emailText);
@@ -65,9 +65,9 @@ function markRed(input, text, message) {
 
 
 
-let cancelBtn = document.getElementById("cancelBtn");
+let cancelBtn = document.getElementsByClassName("cancelBtn");
 
-cancelBtn.addEventListener("click", () => {
+cancelBtn[0].addEventListener("click", () => {
     let emailInput = document.getElementById("email");
     let emailText = document.getElementById("emailHelp");
     let msg = "We'll never share your email with anyone else";

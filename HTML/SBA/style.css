@@ -22,7 +22,7 @@ body {
     font-size: 18px;
 }
 
-#submitBtn, #addCartBtn {
+.submitBtn, .addCartBtn {
     background-color: #cd8eee;
 }
 

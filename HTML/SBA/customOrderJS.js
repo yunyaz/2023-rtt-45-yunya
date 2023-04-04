@@ -1,3 +1,4 @@
+
 let shape = document.getElementById("cakeShape");
 
 shape.addEventListener("change", () => {
@@ -10,7 +11,7 @@ shape.addEventListener("change", () => {
 
     if (index === 1) {
         let roundSizes = ['6"', '8"', '10"', '12"'];
-        for (size of roundSizes) {
+        for (let size of roundSizes) {
             let round = document.createElement("option");
             round.innerHTML = size;
             sizeOptions.appendChild(round);
@@ -20,7 +21,7 @@ shape.addEventListener("change", () => {
     if (index === 2 ) {
         let sheetSizes = ['1/4 Sheet Single', '1/4 Sheet Double', '1/2 Sheet Single', 
                             '1/2 Sheet Double', 'Full Sheet Single', 'Full Sheet Double'];
-        for (size of sheetSizes) {
+        for (let size of sheetSizes) {
             let sheet = document.createElement("option");
             sheet.innerHTML = size;
             sizeOptions.appendChild(sheet);
@@ -30,9 +31,9 @@ shape.addEventListener("change", () => {
 
 
 
-let submitBtn = document.getElementById("submitBtn");
+let submitBtn = document.getElementsByClassName("submitBtn");
 
-submitBtn.addEventListener("click", () => {
+submitBtn[0].addEventListener("click", () => {
     let nameInput = document.getElementById("name");
     let nameText = document.getElementById("nameHelp");
     checkName(nameInput, nameText);
@@ -107,9 +108,9 @@ function removeRed(input, text) {
 
 
 
-let cancelBtn = document.getElementById("cancelBtn");
+let cancelBtn = document.getElementsByClassName("cancelBtn");
 
-cancelBtn.addEventListener("click", () => {
+cancelBtn[0].addEventListener("click", () => {
     let nameInput = document.getElementById("name");
     let nameText = document.getElementById("nameHelp");
     removeRedAndText(nameInput, nameText);
