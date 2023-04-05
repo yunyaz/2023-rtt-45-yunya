@@ -121,6 +121,7 @@ public class EmployeeController {
         form.setJobTitle(emp.getJobTitle());
         form.setVacationHours(emp.getVacationHours());
         form.setOfficeId(emp.getOfficeId());
+        form.setProfileImageUrl(emp.getProfileImageUrl());
 
         // add the form bean to the model to pass it to the jsp page
         response.addObject("form", form);
@@ -156,6 +157,7 @@ public class EmployeeController {
         emp.setJobTitle(form.getJobTitle());
         emp.setVacationHours(form.getVacationHours());
         emp.setOfficeId(form.getOfficeId());
+        emp.setProfileImageUrl(form.getProfileImageUrl());
 
         employeeDao.save(emp);
 

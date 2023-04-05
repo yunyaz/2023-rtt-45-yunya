@@ -15,6 +15,8 @@ public interface ProductDAO extends JpaRepository<Product, Long> {
     @Query("select p from Product p where p.id = :id")
     Product findById(Integer id);
 
-    @Query("select p from Product p where lower(p.productName) LIKE lower(concat('%', :search, '%'))")
+    @Query(value = "select * from products where lower(product_name) LIKE lower(concat('%', :search, '%'))", nativeQuery = true)
     List<Product> findByPartialSearch(String search);
+
+    List<Product> findByProductNameContainingIgnoreCase(String search);
 }

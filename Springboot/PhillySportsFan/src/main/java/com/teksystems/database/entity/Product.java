@@ -37,7 +37,7 @@ public class Product {
     @Column(name = "category")
     private String category;
 
-    @Column(name = "description", columnDefinition = "MEDIUMTEXT")
+    @Column(name = "description")
     private String description;
 
     @Column(name = "img_url")

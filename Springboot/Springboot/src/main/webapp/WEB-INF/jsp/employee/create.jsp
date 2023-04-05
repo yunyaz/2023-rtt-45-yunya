@@ -49,6 +49,10 @@
                 <input type="number" class="form-control" id="vacationHours" name="vacationHours" aria-describedby="vacationHoursHelp" value="${form.vacationHours}">
             </div>
             <div class="mb-3">
+                <label for="profileImageUrl" class="form-label">Profile Image URL</label>
+                <input type="text" class="form-control" id="profileImageUrl" name="profileImageUrl" aria-describedby="profileImageUrlHelp" value="${form.profileImageUrl}">
+            </div>
+            <div class="mb-3">
                 <label for="extension" class="form-label">Extension</label>
                 <input type="text" class="form-control" id="extension" name="extension" aria-describedby="extensionHelp" value="${form.extension}">
             </div>

@@ -47,6 +47,10 @@
                 <th>Vacation Hours</th>
                 <td>${employee.vacationHours}</td>
             </tr>
+            <tr>
+                <th>Profile Image</th>
+                <td><img style="width: 200px;" src="${employee.profileImageUrl}"></td>
+            </tr>
         </table>
     </div>
 </section>

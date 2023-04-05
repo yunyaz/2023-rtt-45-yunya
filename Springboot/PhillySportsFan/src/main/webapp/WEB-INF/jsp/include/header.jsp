@@ -56,9 +56,19 @@
         </div>
         <form class="d-flex" role="search">
             <input class="form-control me-3" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-secondary" type="submit">Search</button>
+            <button class="btn btn-outline-secondary me-5" type="submit">Search</button>
         </form>
-        <div class="dropdown ps-4">
+        <div class="dropdown me-3">
+            <button id="adminDropdown" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                Admin
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/admin/searchProduct">Search Product</a></li>
+                <li><a class="dropdown-item" href="/admin/addProduct">Add Product</a></li>
+            </ul>
+        </div>
+        <div class="dropdown me-3">
             <button id="accountDropdown" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
                 My Account

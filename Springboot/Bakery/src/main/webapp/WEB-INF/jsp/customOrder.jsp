@@ -89,7 +89,7 @@
                         </div>
                         <div class="col">
                             <div>
-                                <label for="cakeFrosting" class="form-label mb-3">Cake Frosting</label>
+                                <label class="form-label mb-3">Cake Frosting</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="vanillaButterCream">
@@ -115,7 +115,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="message" class="form-label">Message</label>
-                        <textarea class="form-control" style="height: 100px;" aria-label="With textarea"></textarea>
+                        <textarea id="message" class="form-control" style="height: 100px;" aria-label="With textarea"></textarea>
                     </div>
                     <button id="submitBtn" type="button" class="btn mt-3 me-3">Submit Order</button>
                     <button id="cancelBtn" type="button" class="btn btn-secondary mt-3">Cancel</button>

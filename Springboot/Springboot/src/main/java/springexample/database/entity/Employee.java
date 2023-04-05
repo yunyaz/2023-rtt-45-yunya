@@ -44,6 +44,9 @@ public class Employee {
 	
 	@Column(name = "vacation_hours")
 	private Integer vacationHours;
+
+	@Column(name = "profile_image_url")
+	private String profileImageUrl;
 	
 	@ToString.Exclude
 	@OneToMany(mappedBy = "employee", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
