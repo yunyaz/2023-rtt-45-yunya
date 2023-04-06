@@ -15,6 +15,9 @@
 
 <section class="py-5 bg-light-blue">
     <div class="col-5 container">
+        <c:if test="${not empty form.id}">
+            <a class="btn btn-secondary mb-3" href="/employee/detail/${form.id}">Employee Detail</a>
+        </c:if>
         <form action="/employee/createSubmit">
             <input type="hidden" name="id" value="${form.id}"/>
             <div class="mb-3">

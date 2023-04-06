@@ -75,7 +75,7 @@ public class EmployeeController {
 
 
         if (!StringUtils.isEmpty(firstName) && !StringUtils.isEmpty(lastName)) {
-            employees = employeeDao.findByFirstNameContainingOrLastNameContainingIgnoreCase(firstName, lastName);
+            employees = employeeDao.findByFirstNameContainingAndLastNameContainingIgnoreCase(firstName, lastName);
         } else if (!StringUtils.isEmpty(firstName) && StringUtils.isEmpty(lastName)) {
             employees = employeeDao.findByFirstNameContainingIgnoreCase(firstName);
         } else if (StringUtils.isEmpty(firstName) && !StringUtils.isEmpty(lastName)) {

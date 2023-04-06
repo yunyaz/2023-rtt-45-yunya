@@ -2,16 +2,20 @@
 
 <jsp:include page="../include/header.jsp"/>
 
-<section class="py-5">
+<section class="pt-5 pb-3">
     <div class="container text-center">
-        <h1>Employee Detail</h1>
+        <h1>Product Detail</h1>
     </div>
 </section>
 
 <section class="py-5">
     <div class="container">
+        <div class="row just-content-center">
+
+        </div>
         <div class="row justify-content-center">
             <div class="col-6">
+                <a class="btn btn-primary mb-5" href="/admin/edit/${product.id}">Edit Product</a>
                 <table class="table table-striped table-bordered">
                     <tr>
                         <th>id</th>
