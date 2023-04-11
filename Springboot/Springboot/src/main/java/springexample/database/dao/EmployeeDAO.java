@@ -15,6 +15,10 @@ public interface EmployeeDAO extends JpaRepository<Employee, Long> {
 
     Employee findById(Integer id);
 
+    Employee findByEmail(String email);
+
+    boolean existsByEmail(String email);
+
     // JPA query using built-in function
     List<Employee> findByFirstNameContainingAndLastNameContainingIgnoreCase(String firstName, String lastName);
     List<Employee> findByFirstNameContainingIgnoreCase(String firstName);

@@ -1,9 +1,14 @@
 package springexample.controller;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import springexample.database.dao.EmployeeDAO;
@@ -18,6 +23,7 @@ import java.util.List;
 @Slf4j
 @Controller
 @RequestMapping("/employee")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class EmployeeController {
 
     @Autowired
@@ -132,12 +138,20 @@ public class EmployeeController {
         return response;
     }
 
-    @GetMapping("/createSubmit")
-    public ModelAndView createSubmit(EmployeeFormBean form) {
+    @PostMapping("/createSubmit")
+    public ModelAndView createSubmit(@Valid EmployeeFormBean form, BindingResult bindingResult) {
         ModelAndView response = new ModelAndView("employee/create");
 
         List<Office> offices = officeDAO.getAllOffices();
         response.addObject("offices", offices);
+
+        if (bindingResult.hasErrors() ) {
+            for (FieldError error : bindingResult.getFieldErrors()) {
+                log.debug("Validation Error on field : " + error.getField() + " with message : " + error.getDefaultMessage());
+            }
+            response.addObject("form", form);
+            response.addObject("bindingResult", bindingResult);
+        }
 
         log.debug("In employee controller - create employee submit");
         log.debug(form.toString());
@@ -162,6 +176,12 @@ public class EmployeeController {
         employeeDao.save(emp);
 
         response.addObject("form", form);
+        response.addObject("success", true);
+
+        form.setId(emp.getId());
+
+        // instead of processing a JSP view we can also redirect to another page
+        // response.setViewName("redirect:/employee/edit/" + emp.getId());
 
         return response;
     }

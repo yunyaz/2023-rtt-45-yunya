@@ -13,3 +13,28 @@
     opacity:0.9;
 }
  */
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.cart {
+    color: black;
+}
+
+.cart:hover {
+    text-decoration: none;
+    color: #d60e96;
+}
+
+.cart .cart-basket {
+    font-size: .6rem;
+    position: absolute;
+    top: -6px;
+    right: -5px;
+    width: 15px;
+    height: 15px;
+    color: #fff;
+    background-color: black;
+    border-radius: 50%;
+}

@@ -1,3 +1,5 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,10 +15,8 @@
             crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alkatra&display=swap" rel="stylesheet">
-    <!--
-    <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
-    -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ab259512ed.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/pub/CSS/global.css">
 </head>
 
@@ -58,30 +58,46 @@
             <input class="form-control me-3" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-secondary me-5" type="submit">Search</button>
         </form>
-        <div class="dropdown me-3">
-            <button id="adminDropdown" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                Admin
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/admin/searchProduct">Search Product</a></li>
-                <li><a class="dropdown-item" href="/admin/addProduct">Add Product</a></li>
-            </ul>
-        </div>
-        <div class="dropdown me-3">
-            <button id="accountDropdown" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                My Account
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/account/signin">Sign In</a></li>
-                <li><a class="dropdown-item" href="/account/createAccount">Create Account</a></li>
-            </ul>
-        </div>
-        <a class="nav-link ps-3" href="/Cart">Cart</a>
+
+        <sec:authorize access="hasAnyAuthority('ADMIN')">
+            <div class="dropdown me-3">
+                <button id="adminDropdown" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                    Admin
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/admin/searchProduct">Search Product</a></li>
+                    <li><a class="dropdown-item" href="/admin/addProduct">Add Product</a></li>
+                </ul>
+            </div>
+        </sec:authorize>
+        <sec:authorize access="!isAuthenticated()">
+            <a class="nav-link mx-3" href="/account/login">My Account</a>
+        </sec:authorize>
+        <sec:authorize access="isAuthenticated()">
+            <div class="dropdown me-3">
+                <button id="accountDropdown" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                    Hi <sec:authentication property="principal.username" />
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/account/detail">My Account</a></li>
+                    <li><a class="dropdown-item" href="/account/logout">Log out</a></li>
+                </ul>
+            </div>
+        </sec:authorize>
+        <a href="" class="cart position-relative d-inline-flex" aria-label="View your shopping cart">
+            <i class="fa-solid fa-cart-shopping mx-3"></i>
+            <span class="cart-basket d-flex align-items-center justify-content-center">
+            0
+          </span>
+        </a>
+
+
         <!--
         <i class="fa badge fa-lg" value=5>&#xf290;</i>
         <i class="fa badge fa-lg" value=8>&#xf07a;</i>
+        <a class="nav-link ps-3" href="/Cart">Cart</a>
         -->
     </div>
 </nav>

@@ -1,3 +1,5 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,8 +15,7 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Lao:wght@200&family=Oswald:wght@500&family=Raleway:wght@800&display=swap"
-            rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alkatra&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/pub/css/global.css">
 </head>
 
@@ -35,7 +36,13 @@
                     <a class="nav-link" href="/signup">Signup</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/login/loginPage">Login</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/bootstrap">Bootstrap</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/fileupload">File Upload</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -47,6 +54,24 @@
                         <li><a class="dropdown-item" href="/employee/create">Create</a></li>
                     </ul>
                 </li>
+                <sec:authorize access="isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login/logout">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=""><sec:authentication property="principal.username" /></a>
+                    </li>
+                </sec:authorize>
+                <sec:authorize access="!isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login/loginPage">Login</a>
+                    </li>
+                </sec:authorize>
+                <sec:authorize access="hasAnyAuthority('ADMIN')">
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Admin</a>
+                    </li>
+                </sec:authorize>
             </ul>
         </div>
     </div>
