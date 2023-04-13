@@ -55,12 +55,12 @@
             </div>
         </div>
         <form class="d-flex" role="search">
-            <input class="form-control me-3" type="search" placeholder="Search" aria-label="Search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-secondary me-5" type="submit">Search</button>
         </form>
 
         <sec:authorize access="hasAnyAuthority('ADMIN')">
-            <div class="dropdown me-3">
+            <div class="dropdown me-2">
                 <button id="adminDropdown" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                     Admin
@@ -86,11 +86,9 @@
                 </ul>
             </div>
         </sec:authorize>
-        <a href="" class="cart position-relative d-inline-flex" aria-label="View your shopping cart">
-            <i class="fa-solid fa-cart-shopping mx-3"></i>
-            <span class="cart-basket d-flex align-items-center justify-content-center">
-            0
-          </span>
+        <a href="" class="cart position-relative d-inline-flex mt-1" aria-label="View your shopping cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="cart-basket d-flex align-items-center justify-content-center">0</span>
         </a>
 
 

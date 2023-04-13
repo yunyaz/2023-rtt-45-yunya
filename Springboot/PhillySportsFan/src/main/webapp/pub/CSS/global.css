@@ -22,10 +22,16 @@ body {
     color: black;
 }
 
+a {
+    text-decoration: none;
+}
+
+/*
 .cart:hover {
     text-decoration: none;
     color: #d60e96;
 }
+*/
 
 .cart .cart-basket {
     font-size: .6rem;
@@ -35,6 +41,10 @@ body {
     width: 15px;
     height: 15px;
     color: #fff;
-    background-color: black;
+    background-color: rgb(83, 141, 234);
     border-radius: 50%;
+}
+
+#forgotPassword,.errorMessage,.form-label,.form-check-label,.form-text {
+    font-size: 14px;
 }

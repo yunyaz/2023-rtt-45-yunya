@@ -15,6 +15,7 @@ import springexample.database.dao.UserRoleDAO;
 import springexample.database.entity.User;
 import springexample.database.entity.UserRole;
 import springexample.formbeans.CreateUserFormBean;
+import springexample.security.AuthenticatedUserService;
 
 @Slf4j
 @Controller
@@ -28,6 +29,9 @@ public class SlashController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private AuthenticatedUserService authenticatedUserService;
 
     @RequestMapping(value={"/index", "/", "/index.html"}, method=RequestMethod.GET)
     public ModelAndView index(HttpSession session) {
@@ -49,7 +53,7 @@ public class SlashController {
 
 
     @PostMapping("/signup")
-    public ModelAndView signup(CreateUserFormBean form) {
+    public ModelAndView signup(CreateUserFormBean form, HttpSession session) {
         ModelAndView response = new ModelAndView("signup");
         log.debug("In the signup controller post method");
         log.debug(form.toString());
@@ -73,6 +77,8 @@ public class SlashController {
         userRole.setUserId(user.getId());
 
         userRoleDao.save(userRole);
+
+        authenticatedUserService.changeLoggedInUsername(session, form.getEmail(), form.getPassword());
 
         return response;
     }

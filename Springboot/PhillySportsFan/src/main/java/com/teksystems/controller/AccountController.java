@@ -5,10 +5,15 @@ import com.teksystems.database.dao.UserRoleDAO;
 import com.teksystems.database.entity.User;
 import com.teksystems.database.entity.UserRole;
 import com.teksystems.formbeans.CreateUserFormBean;
+import com.teksystems.security.AuthenticatedUserService;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +33,9 @@ public class AccountController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private AuthenticatedUserService authenticatedUserService;
+
     @GetMapping("/createAccount")
     public ModelAndView createAccount() {
         ModelAndView response = new ModelAndView("account/createAccount");
@@ -36,9 +44,19 @@ public class AccountController {
     }
 
     @PostMapping("/createAccountSubmit")
-    public ModelAndView createAccountSubmit(CreateUserFormBean form) {
+    public ModelAndView createAccountSubmit(@Valid CreateUserFormBean form, BindingResult bindingResult, HttpSession session) {
         ModelAndView response = new ModelAndView("account/createAccount");
         log.debug("In the account controller - create account submit");
+
+        if (bindingResult.hasErrors() ) {
+            for (FieldError error : bindingResult.getFieldErrors()) {
+                log.debug("Validation Error on field : " + error.getField() + " with message : " + error.getDefaultMessage());
+            }
+            response.addObject("form", form);
+            response.addObject("bindingResult", bindingResult);
+
+            return response;
+        }
 
         User user = new User();
         user.setEmail(form.getEmail());
@@ -56,6 +74,8 @@ public class AccountController {
         userRole.setUserId(user.getId());
 
         userRoleDao.save(userRole);
+
+        authenticatedUserService.changeLoggedInUsername(session, form.getEmail(), form.getPassword());
 
         return response;
     }
