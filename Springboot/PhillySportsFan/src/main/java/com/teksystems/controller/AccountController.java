@@ -9,6 +9,7 @@ import com.teksystems.security.AuthenticatedUserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -48,13 +49,17 @@ public class AccountController {
         ModelAndView response = new ModelAndView("account/createAccount");
         log.debug("In the account controller - create account submit");
 
+        response.addObject("form", form);
+
+        if (StringUtils.equals(form.getPassword(), form.getConfirmPassword()) == false){
+            bindingResult.rejectValue("confirmPassword", "error.confirmPassword", "Passwords do not match");
+        }
+
         if (bindingResult.hasErrors() ) {
             for (FieldError error : bindingResult.getFieldErrors()) {
                 log.debug("Validation Error on field : " + error.getField() + " with message : " + error.getDefaultMessage());
             }
-            response.addObject("form", form);
             response.addObject("bindingResult", bindingResult);
-
             return response;
         }
 

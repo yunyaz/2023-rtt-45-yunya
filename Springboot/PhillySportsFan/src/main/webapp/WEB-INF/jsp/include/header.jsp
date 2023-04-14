@@ -21,7 +21,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg px-3 py-4">
+<nav class="navbar navbar-expand-lg border-bottom px-3 py-4">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -86,7 +86,7 @@
                 </ul>
             </div>
         </sec:authorize>
-        <a href="" class="cart position-relative d-inline-flex mt-1" aria-label="View your shopping cart">
+        <a href="" class="cart position-relative d-inline-flex mt-1 ms-3" aria-label="View your shopping cart">
             <i class="fa-solid fa-cart-shopping"></i>
             <span class="cart-basket d-flex align-items-center justify-content-center">0</span>
         </a>

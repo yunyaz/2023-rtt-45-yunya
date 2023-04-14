@@ -22,7 +22,7 @@ public class ErrorController{
 
         String stackTrace = getHTMLStackTrace(ExceptionUtils.getStackFrames(ex));
 
-        ModelAndView model = new ModelAndView("/error/500");
+        ModelAndView model = new ModelAndView("error/500");
 
         // message is the request URL if it was an error page, otherwise it can be a message
         // from the class that calls it

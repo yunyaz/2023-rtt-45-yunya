@@ -1,10 +1,14 @@
 package springexample.controller;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +42,8 @@ public class SlashController {
         log.debug("In the index controller method");
         ModelAndView response = new ModelAndView("index");
 
-        log.debug("######### Session attribute name = " + session.getAttribute("name"));
+        log.debug("######### Session attribute name = "
+                + session.getAttribute("name"));
 
         return response;
     }
@@ -53,10 +58,28 @@ public class SlashController {
 
 
     @PostMapping("/signup")
-    public ModelAndView signup(CreateUserFormBean form, HttpSession session) {
+    public ModelAndView signup(@Valid CreateUserFormBean form, BindingResult bindingResult, HttpSession session) {
         ModelAndView response = new ModelAndView("signup");
         log.debug("In the signup controller post method");
         log.debug(form.toString());
+
+        response.addObject("form", form);
+
+        if (StringUtils.equals(form.getPassword(), form.getConfirmPassword()) == false){
+            bindingResult.rejectValue("confirmPassword", "error.confirmPassword", "Passwords do not match");
+        }
+
+        if(bindingResult.hasErrors()){
+            for ( FieldError error : bindingResult.getFieldErrors()){
+                log.debug("Validation Error on field: " + error.getField());
+
+                log.debug("Validation Error Message: " + error.getDefaultMessage());
+            }
+
+            response.addObject("bindingResult", bindingResult);
+
+            return response;
+        }
 
         User user = new User();
         user.setEmail(form.getEmail());

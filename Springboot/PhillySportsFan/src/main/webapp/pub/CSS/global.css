@@ -24,6 +24,7 @@ body {
 
 a {
     text-decoration: none;
+    color: black;
 }
 
 /*
@@ -47,4 +48,8 @@ a {
 
 #forgotPassword,.errorMessage,.form-label,.form-check-label,.form-text {
     font-size: 14px;
+}
+
+.card-title {
+    color: grey;
 }

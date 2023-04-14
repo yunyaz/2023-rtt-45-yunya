@@ -68,7 +68,7 @@
                     Create Product
                 </c:if>
                 <c:if test="${not empty form.id}">
-                    Edit Product
+                    Save Changes
                 </c:if>
             </button>
         </form>
