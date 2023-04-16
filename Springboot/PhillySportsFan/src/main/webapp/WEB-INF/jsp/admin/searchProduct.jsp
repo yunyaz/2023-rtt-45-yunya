@@ -27,7 +27,7 @@
 
 <section class="py-5">
     <div class="container text-center">
-        <h4 class="pb-3">${productsList.size()} Search Results</h4>
+        <h4 class="pb-3">${productList.size()} Search Results</h4>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -40,7 +40,7 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${productsList}" var="product">
+            <c:forEach items="${productList}" var="product">
                 <tr>
                     <th><a href="/admin/detail/${product.id}">${product.id}</a></th>
                     <td>${product.productName}</td>

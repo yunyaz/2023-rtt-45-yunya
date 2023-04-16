@@ -2,18 +2,15 @@
 
 <jsp:include page="../include/header.jsp"/>
 
-<section class="py-5 bg-dark-blue">
-    <div class="container text-center">
+<section class="py-5">
+    <div class="container text-center pb-5">
         <c:if test="${empty form.id}">
-            <h1>Add Product</h1>
+            <h2>Add Product</h2>
         </c:if>
         <c:if test="${not empty form.id}">
-            <h1>Edit Product</h1>
+            <h2>Edit Product</h2>
         </c:if>
     </div>
-</section>
-
-<section class="py-5">
     <div class="col-5 container">
         <form action="/admin/addProductSubmit">
             <input type="hidden" name="id" value="${form.id}"/>

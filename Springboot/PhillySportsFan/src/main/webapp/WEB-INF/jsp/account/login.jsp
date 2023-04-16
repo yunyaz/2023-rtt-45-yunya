@@ -1,6 +1,6 @@
 <jsp:include page="../include/header.jsp"/>
 
-<section class="py-5" style="background-color: #ede6f1; height: 750px">
+<section class="py-5" style="background-color: #ebeff5; height: 750px">
     <div class="row justify-content-center">
         <div class="card pb-3 justify-content-center" style="width: 25%;">
             <div class="card-body pb-3">

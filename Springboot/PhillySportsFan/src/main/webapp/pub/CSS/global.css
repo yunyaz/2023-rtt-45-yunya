@@ -46,10 +46,14 @@ a {
     border-radius: 50%;
 }
 
-#forgotPassword,.errorMessage,.form-label,.form-check-label,.form-text {
+#forgotPassword, .errorMessage, .form-label, .form-check-label, .form-text {
     font-size: 14px;
 }
 
-.card-title {
-    color: grey;
+.card-title, .price{
+    color: #47484a;
+}
+
+.productImage {
+    width: 700px;
 }

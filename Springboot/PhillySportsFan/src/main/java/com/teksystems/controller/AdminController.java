@@ -34,7 +34,7 @@ public class AdminController {
 
         List<Product> products = productDao.findByProductNameContainingIgnoreCase(searchProduct);
 
-        response.addObject("productsList", products);
+        response.addObject("productList", products);
         response.addObject("searchParam", searchProduct);
 
         return response;

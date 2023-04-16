@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Philly Sports Fan</title>
+    <title>Philly Sports Shop</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
@@ -28,10 +28,9 @@
                 aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="/index">Philly Sports Fan</a>
+        <a class="navbar-brand" href="/index">Philly Sports Shop</a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="navbar-nav">
-                
                 <div class="d-inline-flex ps-4">
                     <a class="pt-1" href="/eagles"><img src="/pub/images/icons/eagles_mascot.gif"></a>
                     <a class="nav-link ps-2" href="/eagles">Eagles</a>
@@ -54,8 +53,8 @@
                 </div>
             </div>
         </div>
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <form action="/search" class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
             <button class="btn btn-outline-secondary me-5" type="submit">Search</button>
         </form>
 
@@ -90,12 +89,5 @@
             <i class="fa-solid fa-cart-shopping"></i>
             <span class="cart-basket d-flex align-items-center justify-content-center">0</span>
         </a>
-
-
-        <!--
-        <i class="fa badge fa-lg" value=5>&#xf290;</i>
-        <i class="fa badge fa-lg" value=8>&#xf07a;</i>
-        <a class="nav-link ps-3" href="/Cart">Cart</a>
-        -->
     </div>
 </nav>

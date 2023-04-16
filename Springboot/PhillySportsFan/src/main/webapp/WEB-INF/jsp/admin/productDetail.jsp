@@ -10,9 +10,6 @@
 
 <section class="py-5">
     <div class="container">
-        <div class="row just-content-center">
-
-        </div>
         <div class="row justify-content-center">
             <div class="col-6">
                 <a class="btn btn-primary mb-5" href="/admin/edit/${product.id}">Edit Product</a>
