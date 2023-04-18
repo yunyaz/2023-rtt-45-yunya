@@ -10,7 +10,7 @@
                 <img class="productImage" src="${product.imgUrl}" alt="">
             </div>
             <div class="col-5">
-                <form action="/order/addToCart" method="POST">
+                <form action="/order/cart" method="POST">
                     <input type="hidden" name="productId" value="${product.id}"/>
                     <div class="row mb-3">
                         <h5>${product.productName}</h5>

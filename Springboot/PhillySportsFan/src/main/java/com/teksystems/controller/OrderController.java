@@ -41,6 +41,8 @@ public class OrderController {
     @Autowired
     private AuthenticatedUserService authenticatedUserService;
 
+
+
     @GetMapping("/cart")
     public ModelAndView cart() {
         ModelAndView response = new ModelAndView("account/cart");
@@ -66,8 +68,8 @@ public class OrderController {
         return response;
     }
 
-    @PostMapping("/addToCart")
-    public ModelAndView addToCart(OrderFormBean form) {
+    @PostMapping("/cart")
+    public ModelAndView cart(OrderFormBean form) {
         ModelAndView response = new ModelAndView("account/cart");
         log.debug("In order controller - add to cart");
 
@@ -78,32 +80,35 @@ public class OrderController {
 
         if (orderDao.findOrderInCart(user.getId()) != null) {
             order = orderDao.findOrderInCart(user.getId());
+        } else {
+            order.setStatus("cart");
+            order.setUser(user);
         }
-
-        order.setStatus("cart");
-        order.setUser(user);
 
         Product product = productDao.findById(form.getProductId());
 
         OrderProduct orderProduct = new OrderProduct();
-        orderProduct.setSize(form.getSize());
-        orderProduct.setQuantity(form.getQuantity());
-        orderProduct.setProduct(product);
-        orderProduct.setOrder(order);
+        if (orderProductDao.findByProductIdAndSize(order.getId(), form.getProductId(), form.getSize()) != null) {
+            orderProduct = orderProductDao.findByProductIdAndSize(order.getId(), form.getProductId(), form.getSize());
+            orderProduct.setQuantity(orderProduct.getQuantity() + 1);
+        } else {
+            orderProduct.setSize(form.getSize());
+            orderProduct.setQuantity(form.getQuantity());
+            orderProduct.setProduct(product);
+            orderProduct.setOrder(order);
+        }
 
         orderProductDao.save(orderProduct);
+        orderDao.save(order);
 
         response.addObject("order", order);
 
         Double orderTotal = orderDao.getOrderTotal(order.getId());
-        response.addObject("total", orderTotal);
+        response.addObject("orderTotal", orderTotal);
 
         Integer totalItems = orderDao.getTotalItems(order.getId());
         response.addObject("totalItems", totalItems);
 
         return response;
     }
-
-
-
 }

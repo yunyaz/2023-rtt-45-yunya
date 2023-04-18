@@ -33,7 +33,7 @@
                     <h3>Order summary</h3>
                     <hr>
                     <div class="row mt-3">
-                        <div class="col">
+                        <div class="col-7">
                             Subtotal (${totalItems} items)
                         </div>
                         <div class="col text-end">
@@ -69,10 +69,10 @@
                             <fmt:formatNumber type="number" pattern = "###.00" value="${orderTotal + shipping + tax}"/>
                         </div>
                     </div>
+                    <div class="row mt-5 mx-1">
+                        <a class="btn btn-primary" href="/order/checkout">Checkout</a>
+                    </div>
                 </c:if>
-                <div class="row mt-5 mx-1">
-                    <a class="btn btn-primary" href="/order/checkout">Checkout</a>
-                </div>
             </div>
         </div>
     </div>
