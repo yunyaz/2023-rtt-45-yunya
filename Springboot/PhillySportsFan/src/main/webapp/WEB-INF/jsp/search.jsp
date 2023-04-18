@@ -10,7 +10,7 @@
         <div class="row pt-3">
             <c:forEach items="${productList}" var="product">
                 <div class="col-3 mb-5">
-                    <div class="card" style="height: 450px;">
+                    <div class="card border border-0" style="height: 450px;">
                         <a href="/detail/${product.id}">
                             <img class="card-img-top" src="${product.imgUrl}" alt="">
                             <div class="card-body">

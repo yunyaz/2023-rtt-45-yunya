@@ -21,7 +21,7 @@ import java.util.List;
 public class AdminController {
 
     public static final List<String> sportsTeams = Arrays.asList("Eagles", "Phillies", "76ers", "Flyers", "Union");
-    public static final List<String> category = Arrays.asList("Jerseys", "T-shirts", "Sweatshirts", "Hats", "Accessories", "Home & Office", "Collectibles");
+    public static final List<String> category = Arrays.asList("Jerseys", "T-shirts", "Sweatshirts", "Hats", "Accessories", "Collectibles");
 
     @Autowired
     private ProductDAO productDao;

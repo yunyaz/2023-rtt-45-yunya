@@ -19,4 +19,10 @@ public interface ProductDAO extends JpaRepository<Product, Long> {
     List<Product> findByPartialSearch(String search);
 
     List<Product> findByProductNameContainingIgnoreCase(String search);
+
+    @Query("select p from Product p where lower(p.sportsTeam) = lower(:teamName)")
+    List<Product> findBySportsTeam(String teamName);
+
+    @Query("select p from Product p where lower(p.sportsTeam) = lower(:teamName) and lower(p.category) = lower(:category)")
+    List<Product> findBySportsTeamAndCategory(String teamName, String category);
 }

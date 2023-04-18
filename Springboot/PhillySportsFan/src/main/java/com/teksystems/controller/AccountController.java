@@ -91,4 +91,52 @@ public class AccountController {
         log.debug("In the account controller - login");
         return response;
     }
+
+    @GetMapping("/detail")
+    public ModelAndView detail() {
+        ModelAndView response = new ModelAndView("account/accountDetail");
+        log.debug("In the account controller - account detail");
+        return response;
+    }
+
+    @PostMapping("/changeEmail")
+    public ModelAndView changeEmail(@Valid CreateUserFormBean form, BindingResult bindingResult, HttpSession session) {
+        ModelAndView response = new ModelAndView("account/createAccount");
+        log.debug("In the account controller - create account submit");
+
+        response.addObject("form", form);
+
+        if (StringUtils.equals(form.getPassword(), form.getConfirmPassword()) == false){
+            bindingResult.rejectValue("confirmPassword", "error.confirmPassword", "Passwords do not match");
+        }
+
+        if (bindingResult.hasErrors() ) {
+            for (FieldError error : bindingResult.getFieldErrors()) {
+                log.debug("Validation Error on field : " + error.getField() + " with message : " + error.getDefaultMessage());
+            }
+            response.addObject("bindingResult", bindingResult);
+            return response;
+        }
+
+        User user = new User();
+        user.setEmail(form.getEmail());
+        user.setFirstName(form.getFirstName());
+        user.setLastName(form.getLastName());
+        user.setSubscription(form.getSubscription());
+
+        String encryptedPassword = passwordEncoder.encode(form.getPassword());
+        user.setPassword(encryptedPassword);
+
+        userDao.save(user);
+
+        UserRole userRole = new UserRole();
+        userRole.setRoleName("USER");
+        userRole.setUserId(user.getId());
+
+        userRoleDao.save(userRole);
+
+        authenticatedUserService.changeLoggedInUsername(session, form.getEmail(), form.getPassword());
+
+        return response;
+    }
 }

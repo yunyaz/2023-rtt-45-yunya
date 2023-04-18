@@ -34,11 +34,11 @@ public class Order {
     @Column(name = "status")
     private String status;
 
-    @Column(name = "user_id")
+    @Column(name = "user_id", insertable=false, updatable=false)
     private Integer userId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", insertable=false, updatable=false)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

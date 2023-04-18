@@ -54,4 +54,29 @@ public class SlashController {
 
         return response;
     }
+
+    @GetMapping("/team/{teamName}")
+    public ModelAndView team(@PathVariable String teamName) {
+        ModelAndView response = new ModelAndView("team");
+        log.debug("In slash controller - team = " + teamName);
+
+        List<Product> products = productDao.findBySportsTeam(teamName);
+        response.addObject("productList", products);
+        response.addObject("teamName", teamName);
+
+        return response;
+    }
+
+    @GetMapping("/team/{teamName}/{category}")
+    public ModelAndView team(@PathVariable String teamName, @PathVariable String category) {
+        ModelAndView response = new ModelAndView("team");
+        log.debug("In slash controller - team = " + teamName + " category = " + category);
+
+        List<Product> products = productDao.findBySportsTeamAndCategory(teamName, category);
+        response.addObject("productList", products);
+        response.addObject("teamName", teamName);
+//        response.addObject("category", category);
+
+        return response;
+    }
 }

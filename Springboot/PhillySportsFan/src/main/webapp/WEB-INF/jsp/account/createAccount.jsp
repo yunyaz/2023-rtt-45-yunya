@@ -42,8 +42,7 @@
                         <input type="text" class="form-control" id="password" name="password"
                                aria-describedby="passwordHelp">
                         <div id="passwordHelp" class="form-text">Password must contain at least one uppercase letter,
-                            one
-                            lowercase letter, one digit, and one of !@#$ symbols
+                            one lowercase letter, one digit, and one of !@#$ symbols
                         </div>
                         <c:if test="${bindingResult.hasFieldErrors('password')}">
                             <c:forEach items="${bindingResult.getFieldErrors('password')}" var="error">

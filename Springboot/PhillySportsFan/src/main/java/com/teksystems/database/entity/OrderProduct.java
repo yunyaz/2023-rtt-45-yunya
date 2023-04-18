@@ -25,13 +25,18 @@ public class OrderProduct {
     @Column(name = "product_id", insertable=false, updatable=false)
     private Integer productId;
 
+    @Column(name = "size")
+    private String size;
+
     @Column(name = "quantity")
     private Integer quantity;
 
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
     private Order order;
 
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
     private Product product;
