@@ -32,19 +32,19 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="navbar-nav">
                 <div class="d-inline-flex ps-4">
-                    <a class="pt-1" href="/team/eagles"><img src="/pub/images/icons/eagles_mascot.gif"></a>
-                    <a class="nav-link ps-2" href="/team/eagles">Eagles</a>
+                    <a class="pt-1" href="/team/eagles"><img src="/pub/images/icons/eagles_mascot.png"></a>
+                    <a class="nav-link" href="/team/eagles">Eagles</a>
                 </div>
                 <div class="d-inline-flex ps-4">
                     <a class="pt-1" href="/team/phillies"><img src="/pub/images/icons/phillies_mascot.png"></a>
                     <a class="nav-link" href="/team/phillies">Phillies</a>
                 </div>
                 <div class="d-inline-flex ps-4">
-                    <a class="" href="/team/76ers"><img style="height: 90%" src="/pub/images/icons/76ers_mascot.png"></a>
+                    <a class="" href="/team/76ers"><img src="/pub/images/icons/76ers_mascot.png"></a>
                     <a class="nav-link" href="/team/76ers">76ers</a>
                 </div>
                 <div class="d-inline-flex ps-4">
-                    <a class="pt-1" href="/team/flyers"><img src="/pub/images/icons/flyers_mascot.png"></a>
+                    <a class="pt-2" href="/team/flyers"><img src="/pub/images/icons/flyers_mascot.png"></a>
                     <a class="nav-link" href="/team/flyers">Flyers</a>
                 </div>
                 <div class="d-inline-flex ps-4">
@@ -86,9 +86,9 @@
                 </ul>
             </div>
         </sec:authorize>
-        <a href="/order/cart" class="cart position-relative d-inline-flex mt-1 ms-3" aria-label="View your shopping cart">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <span class="cart-basket d-flex align-items-center justify-content-center">0</span>
+        <a id="cartLink" href="/order/cart" class="cart position-relative d-inline-flex mt-1 mx-1" aria-label="View your shopping cart">
+            <i class="fa-solid fa-cart-shopping fa-lg"></i>
+            <span class="cart-basket d-flex align-items-center justify-content-center">${totalItems}</span>
         </a>
     </div>
 </nav>

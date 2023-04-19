@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -19,6 +20,8 @@ public class SlashController {
 
     @Autowired
     private ProductDAO productDao;
+
+    private static final List<Integer> QUANTITY = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
     @GetMapping({"/index", "/", "/index.html"})
     public ModelAndView index() {
@@ -51,6 +54,7 @@ public class SlashController {
 
         Product product = productDao.findById(id);
         response.addObject("product", product);
+        response.addObject("quantityList", QUANTITY);
 
         return response;
     }
@@ -68,7 +72,7 @@ public class SlashController {
     }
 
     @GetMapping("/team/{teamName}/{category}")
-    public ModelAndView team(@PathVariable String teamName, @PathVariable String category) {
+    public ModelAndView category(@PathVariable String teamName, @PathVariable String category) {
         ModelAndView response = new ModelAndView("team");
         log.debug("In slash controller - team = " + teamName + " category = " + category);
 

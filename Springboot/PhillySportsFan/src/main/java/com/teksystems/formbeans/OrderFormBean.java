@@ -9,6 +9,8 @@ import lombok.ToString;
 @ToString
 public class OrderFormBean {
 
+    private Integer orderId;
+
     private Integer productId;
 
     private String size;

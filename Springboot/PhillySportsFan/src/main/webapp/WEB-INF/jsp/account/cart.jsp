@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:include page="../include/header.jsp"/>
 
@@ -18,7 +18,24 @@
                         <div class="col-7">
                             <p>${orderProduct.getProduct().getProductName()}</p>
                             <p>Size: ${orderProduct.getSize()}</p>
-                            <p>Quantity: ${orderProduct.getQuantity()}</p>
+                            <div class="row">
+                                <div class="col">
+                                    <form action="/order/updateCart" method="POST">
+                                        <input type="hidden" name="orderId" value="${orderProduct.getOrderId()}"/>
+                                        <input type="hidden" name="productId" value="${orderProduct.getProductId()}"/>
+                                        <input type="hidden" name="size" value="${orderProduct.getSize()}"/>
+                                        <span>Quantity:</span>
+                                        <select onchange="this.form.submit()" id="quantity" name="quantity" class="form-select-sm"
+                                                aria-label="select quantity" style="width: 70px;">
+                                            <c:forEach items="${quantityList}" var="quantity">
+                                                <option value="${quantity}"
+                                                        <c:if test="${quantity eq orderProduct.getQuantity()}">selected</c:if>
+                                                >${quantity}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-2 text-end">
                             <span>$${orderProduct.getProduct().getPrice()}</span>
@@ -47,7 +64,7 @@
                         <div class="col text-end">
                             <c:set var="shipping" value="${5}"/>
                             $
-                            <fmt:formatNumber type="number" pattern = "###.00" value="${shipping}"/>
+                            <fmt:formatNumber type="number" pattern="###.00" value="${shipping}"/>
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -57,7 +74,7 @@
                         <div class="col text-end">
                             <c:set var="tax" value="${orderTotal * 0.06}"/>
                             $
-                            <fmt:formatNumber type="number" pattern = "###.00" value="${tax}"/>
+                            <fmt:formatNumber type="number" pattern="###.00" value="${tax}"/>
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -66,7 +83,7 @@
                         </div>
                         <div class="col text-end">
                             $
-                            <fmt:formatNumber type="number" pattern = "###.00" value="${orderTotal + shipping + tax}"/>
+                            <fmt:formatNumber type="number" pattern="###.00" value="${orderTotal + shipping + tax}"/>
                         </div>
                     </div>
                     <div class="row mt-5 mx-1">

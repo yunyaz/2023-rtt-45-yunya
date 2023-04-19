@@ -22,25 +22,18 @@ body {
     color: black;
 }
 
-a {
+#cartLink,#productCard {
     text-decoration: none;
     color: black;
 }
 
-/*
-.cart:hover {
-    text-decoration: none;
-    color: #d60e96;
-}
-*/
-
 .cart .cart-basket {
     font-size: .6rem;
     position: absolute;
-    top: -6px;
-    right: -5px;
-    width: 15px;
-    height: 15px;
+    top: -22px;
+    right: -8px;
+    width: 20px;
+    height: 20px;
     color: #fff;
     background-color: rgb(83, 141, 234);
     border-radius: 50%;
@@ -65,3 +58,4 @@ a {
 .nav-link:hover {
     color: black;
 }
+

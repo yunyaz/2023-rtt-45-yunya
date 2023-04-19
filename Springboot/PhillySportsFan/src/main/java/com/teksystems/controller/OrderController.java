@@ -13,12 +13,11 @@ import com.teksystems.security.AuthenticatedUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -41,7 +40,7 @@ public class OrderController {
     @Autowired
     private AuthenticatedUserService authenticatedUserService;
 
-
+    private static final List<Integer> QUANTITY = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
     @GetMapping("/cart")
     public ModelAndView cart() {
@@ -65,12 +64,13 @@ public class OrderController {
         Integer totalItems = orderDao.getTotalItems(order.getId());
         response.addObject("totalItems", totalItems);
 
+        response.addObject("quantityList", QUANTITY);
+
         return response;
     }
 
-    @PostMapping("/cart")
-    public ModelAndView cart(OrderFormBean form) {
-        ModelAndView response = new ModelAndView("account/cart");
+    @PostMapping("/addToCart")
+    public String addToCart(OrderFormBean form) {
         log.debug("In order controller - add to cart");
 
         String email = authenticatedUserService.getCurrentUsername();
@@ -88,8 +88,8 @@ public class OrderController {
         Product product = productDao.findById(form.getProductId());
 
         OrderProduct orderProduct = new OrderProduct();
-        if (orderProductDao.findByProductIdAndSize(order.getId(), form.getProductId(), form.getSize()) != null) {
-            orderProduct = orderProductDao.findByProductIdAndSize(order.getId(), form.getProductId(), form.getSize());
+        if (orderProductDao.findByOrderIdAndProductIdAndSize(order.getId(), form.getProductId(), form.getSize()) != null) {
+            orderProduct = orderProductDao.findByOrderIdAndProductIdAndSize(order.getId(), form.getProductId(), form.getSize());
             orderProduct.setQuantity(orderProduct.getQuantity() + 1);
         } else {
             orderProduct.setSize(form.getSize());
@@ -101,14 +101,21 @@ public class OrderController {
         orderProductDao.save(orderProduct);
         orderDao.save(order);
 
-        response.addObject("order", order);
+        return "redirect:/order/cart";
+    }
 
-        Double orderTotal = orderDao.getOrderTotal(order.getId());
-        response.addObject("orderTotal", orderTotal);
+    @PostMapping("/updateCart")
+    public String updateCart(OrderFormBean form) {
+        log.debug("In order controller - update cart");
 
-        Integer totalItems = orderDao.getTotalItems(order.getId());
-        response.addObject("totalItems", totalItems);
 
-        return response;
+
+        OrderProduct orderProduct = orderProductDao.findByOrderIdAndProductIdAndSize(form.getOrderId(), form.getProductId(), form.getSize());
+
+        orderProduct.setQuantity(form.getQuantity());
+
+        orderProductDao.save(orderProduct);
+
+        return "redirect:/order/cart";
     }
 }
