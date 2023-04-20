@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.Length;
 @Getter
 @Setter
 @ToString
-public class CreateUserFormBean {
+public class ChangeEmailFormBean {
 
     @NotEmpty(message = "Email address is required.")
     @Length(max = 30, message = "Email can not be longer than 20 characters.")
@@ -19,19 +19,9 @@ public class CreateUserFormBean {
     @EmailUnique(message = "Email already exists in database")
     private String email;
 
+    @NotEmpty(message = "Confirming email address is required.")
+    private String confirmEmail;
 
-    @NotEmpty(message = "First name is required.")
-    @Length(max = 40, message = "First name can not be longer than 40 characters.")
-    private String firstName;
-
-    @NotEmpty(message = "Last name is required.")
-    private String lastName;
     @NotEmpty(message = "Password is required.")
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$])[A-Za-z\\d!@#$]{8,}$", message = "Invalid password format")
     private String password;
-
-    @NotEmpty(message = "Confirming password is required.")
-    private String confirmPassword;
-
-    private Boolean subscription;
 }

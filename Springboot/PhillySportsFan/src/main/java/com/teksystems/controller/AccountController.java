@@ -4,6 +4,7 @@ import com.teksystems.database.dao.UserDAO;
 import com.teksystems.database.dao.UserRoleDAO;
 import com.teksystems.database.entity.User;
 import com.teksystems.database.entity.UserRole;
+import com.teksystems.formbeans.ChangeEmailFormBean;
 import com.teksystems.formbeans.CreateUserFormBean;
 import com.teksystems.security.AuthenticatedUserService;
 import jakarta.servlet.http.HttpSession;
@@ -67,7 +68,11 @@ public class AccountController {
         user.setEmail(form.getEmail());
         user.setFirstName(form.getFirstName());
         user.setLastName(form.getLastName());
-        user.setSubscription(form.getSubscription());
+        if (form.getSubscription() == null) {
+            user.setSubscription(false);
+        } else {
+            user.setSubscription(true);
+        }
 
         String encryptedPassword = passwordEncoder.encode(form.getPassword());
         user.setPassword(encryptedPassword);
@@ -81,6 +86,8 @@ public class AccountController {
         userRoleDao.save(userRole);
 
         authenticatedUserService.changeLoggedInUsername(session, form.getEmail(), form.getPassword());
+
+        response.addObject("success", true);
 
         return response;
     }
@@ -92,25 +99,37 @@ public class AccountController {
         return response;
     }
 
-    @GetMapping("/detail")
+    @GetMapping("/myAccount")
     public ModelAndView detail() {
-        ModelAndView response = new ModelAndView("account/accountDetail");
+        ModelAndView response = new ModelAndView("account/myAccount/accountDetail");
         log.debug("In the account controller - account detail");
         return response;
     }
 
-    @PostMapping("/changeEmail")
-    public ModelAndView changeEmail(@Valid CreateUserFormBean form, BindingResult bindingResult, HttpSession session) {
-        ModelAndView response = new ModelAndView("account/createAccount");
-        log.debug("In the account controller - create account submit");
+    @GetMapping("/myAccount/changeEmail")
+    public ModelAndView changeEmail() {
+        ModelAndView response = new ModelAndView("account/myAccount/changeEmail");
+        return response;
+    }
+
+    @PostMapping("/myAccount/changeEmailSubmit")
+    public ModelAndView changeEmailSubmit(@Valid ChangeEmailFormBean form, BindingResult bindingResult, HttpSession session) {
+        ModelAndView response = new ModelAndView("account/myAccount/changeEmail");
+        log.debug("In the account controller - change email");
 
         response.addObject("form", form);
 
-        if (StringUtils.equals(form.getPassword(), form.getConfirmPassword()) == false){
-            bindingResult.rejectValue("confirmPassword", "error.confirmPassword", "Passwords do not match");
+        User user = authenticatedUserService.loadCurrentUser();
+
+        if (StringUtils.equals(form.getEmail(), form.getConfirmEmail()) == false){
+            bindingResult.rejectValue("confirmEmail", "error.confirmEmail", "Email addresses do not match");
         }
 
-        if (bindingResult.hasErrors() ) {
+        if (!passwordEncoder.matches(form.getPassword(), user.getPassword())) {
+            bindingResult.rejectValue("password", "error.password", "Invalid password");
+        }
+
+        if (bindingResult.hasErrors()) {
             for (FieldError error : bindingResult.getFieldErrors()) {
                 log.debug("Validation Error on field : " + error.getField() + " with message : " + error.getDefaultMessage());
             }
@@ -118,25 +137,19 @@ public class AccountController {
             return response;
         }
 
-        User user = new User();
         user.setEmail(form.getEmail());
-        user.setFirstName(form.getFirstName());
-        user.setLastName(form.getLastName());
-        user.setSubscription(form.getSubscription());
-
-        String encryptedPassword = passwordEncoder.encode(form.getPassword());
-        user.setPassword(encryptedPassword);
-
         userDao.save(user);
-
-        UserRole userRole = new UserRole();
-        userRole.setRoleName("USER");
-        userRole.setUserId(user.getId());
-
-        userRoleDao.save(userRole);
 
         authenticatedUserService.changeLoggedInUsername(session, form.getEmail(), form.getPassword());
 
+        response.addObject("success", true);
+
+
         return response;
+    }
+
+    @GetMapping("message")
+    public ModelAndView messageAlert() {
+        return new ModelAndView("account/message");
     }
 }

@@ -3,7 +3,7 @@
 <jsp:include page="../include/header.jsp"/>
 
 <section class="py-5">
-    <div class="container text-center pb-5">
+    <div class="container text-center pb-3">
         <c:if test="${empty form.id}">
             <h2>Add Product</h2>
         </c:if>
@@ -11,7 +11,17 @@
             <h2>Edit Product</h2>
         </c:if>
     </div>
-    <div class="col-5 container">
+    <c:if test="${success}">
+        <div class="container alert text-center" role="alert" style="width: 350px; height: 60px; color: black; background-color: #c5ddfd">
+            <c:if test="${empty form.id}">
+                <p>Product created successfully!</p>
+            </c:if>
+            <c:if test="${not empty form.id}">
+                <p>Product edited successfully</p>
+            </c:if>
+        </div>
+    </c:if>
+    <div class="container col-5 pt-2 ">
         <form action="/admin/addProductSubmit">
             <input type="hidden" name="id" value="${form.id}"/>
             <div class="mb-3">

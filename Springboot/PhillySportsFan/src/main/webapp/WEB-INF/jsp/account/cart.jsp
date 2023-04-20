@@ -12,11 +12,12 @@
                 <c:forEach items="${order.getOrderProductList()}" var="orderProduct">
                     <div class="row">
                         <div class="col-3">
-                            <img class="cartImage" src="${orderProduct.getProduct().getImgUrl()}" style="width: 150px"
-                                 alt="">
+                            <a id="cartImageLink" href="/detail/${orderProduct.getProduct().getId()}">
+                                <img class="cartImage" src="${orderProduct.getProduct().getImgUrl()}" style="width: 150px" alt="">
+                            </a>
                         </div>
                         <div class="col-7">
-                            <p>${orderProduct.getProduct().getProductName()}</p>
+                            <a id="cartProductLink" href="/detail/${orderProduct.getProduct().getId()}"><p>${orderProduct.getProduct().getProductName()}</p></a>
                             <p>Size: ${orderProduct.getSize()}</p>
                             <div class="row">
                                 <div class="col">

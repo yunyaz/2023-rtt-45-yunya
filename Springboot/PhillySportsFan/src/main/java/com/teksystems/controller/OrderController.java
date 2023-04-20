@@ -35,9 +35,6 @@ public class OrderController {
     private ProductDAO productDao;
 
     @Autowired
-    private UserDAO userDao;
-
-    @Autowired
     private AuthenticatedUserService authenticatedUserService;
 
     private static final List<Integer> QUANTITY = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
@@ -47,8 +44,7 @@ public class OrderController {
         ModelAndView response = new ModelAndView("account/cart");
         log.debug("In order controller - cart");
 
-        String email = authenticatedUserService.getCurrentUsername();
-        User user = userDao.findByEmail(email);
+        User user = authenticatedUserService.loadCurrentUser();
 
         Order order = new Order();
 
@@ -73,8 +69,7 @@ public class OrderController {
     public String addToCart(OrderFormBean form) {
         log.debug("In order controller - add to cart");
 
-        String email = authenticatedUserService.getCurrentUsername();
-        User user = userDao.findByEmail(email);
+        User user = authenticatedUserService.loadCurrentUser();
 
         Order order = new Order();
 
@@ -90,7 +85,7 @@ public class OrderController {
         OrderProduct orderProduct = new OrderProduct();
         if (orderProductDao.findByOrderIdAndProductIdAndSize(order.getId(), form.getProductId(), form.getSize()) != null) {
             orderProduct = orderProductDao.findByOrderIdAndProductIdAndSize(order.getId(), form.getProductId(), form.getSize());
-            orderProduct.setQuantity(orderProduct.getQuantity() + 1);
+            orderProduct.setQuantity(orderProduct.getQuantity() + form.getQuantity());
         } else {
             orderProduct.setSize(form.getSize());
             orderProduct.setQuantity(form.getQuantity());
@@ -108,14 +103,15 @@ public class OrderController {
     public String updateCart(OrderFormBean form) {
         log.debug("In order controller - update cart");
 
-
-
         OrderProduct orderProduct = orderProductDao.findByOrderIdAndProductIdAndSize(form.getOrderId(), form.getProductId(), form.getSize());
 
-        orderProduct.setQuantity(form.getQuantity());
-
-        orderProductDao.save(orderProduct);
-
+        if (form.getQuantity() == 0) {
+//            orderProductDao.deleteByOrderIdAndProductId(orderProduct.getOrderId(), orderProduct.getProductId());
+            orderProductDao.deleteById(orderProduct.getId());
+        } else {
+            orderProduct.setQuantity(form.getQuantity());
+            orderProductDao.save(orderProduct);
+        }
         return "redirect:/order/cart";
     }
 }

@@ -3,6 +3,7 @@ package com.teksystems.security;
 import com.teksystems.database.dao.UserDAO;
 import com.teksystems.database.entity.User;
 import jakarta.servlet.http.HttpSession;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -44,11 +45,23 @@ public class AuthenticatedUserService {
     public String getCurrentUsername() {
         SecurityContext context = SecurityContextHolder.getContext();
         if (context != null && context.getAuthentication() != null) {
+//            Object o = context.getAuthentication().getPrincipal();
+//            String i = context.getAuthentication().getName();
             final org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User) context.getAuthentication().getPrincipal();
             return principal.getUsername();
         } else {
             return null;
         }
+    }
+
+    public boolean isAuthenticated() {
+        SecurityContext context = SecurityContextHolder.getContext();
+        if (context != null && context.getAuthentication() != null) {
+            if(StringUtils.equals("anonymousUser", context.getAuthentication().getName())) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

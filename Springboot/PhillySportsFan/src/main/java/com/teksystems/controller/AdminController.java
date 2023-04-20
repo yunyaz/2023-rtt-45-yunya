@@ -115,6 +115,7 @@ public class AdminController {
 
         response.addObject("sportsTeams", sportsTeams);
         response.addObject("categoryList", category);
+        response.addObject("success", true);
 
         return response;
     }

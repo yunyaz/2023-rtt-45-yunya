@@ -1,4 +1,5 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,23 +33,23 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="navbar-nav">
                 <div class="d-inline-flex ps-4">
-                    <a class="pt-1" href="/team/eagles"><img src="/pub/images/icons/eagles_mascot.png"></a>
+                    <a class="pt-1" href="/team/eagles"><img src="/pub/images/icons/eagles.png"></a>
                     <a class="nav-link" href="/team/eagles">Eagles</a>
                 </div>
                 <div class="d-inline-flex ps-4">
-                    <a class="pt-1" href="/team/phillies"><img src="/pub/images/icons/phillies_mascot.png"></a>
+                    <a class="pt-1" href="/team/phillies"><img src="/pub/images/icons/phillies.png"></a>
                     <a class="nav-link" href="/team/phillies">Phillies</a>
                 </div>
                 <div class="d-inline-flex ps-4">
-                    <a class="" href="/team/76ers"><img src="/pub/images/icons/76ers_mascot.png"></a>
+                    <a class="" href="/team/76ers"><img src="/pub/images/icons/76ers.png"></a>
                     <a class="nav-link" href="/team/76ers">76ers</a>
                 </div>
                 <div class="d-inline-flex ps-4">
-                    <a class="pt-2" href="/team/flyers"><img src="/pub/images/icons/flyers_mascot.png"></a>
+                    <a class="pt-2" href="/team/flyers"><img src="/pub/images/icons/flyers.png"></a>
                     <a class="nav-link" href="/team/flyers">Flyers</a>
                 </div>
                 <div class="d-inline-flex ps-4">
-                    <a class="pt-1" href="/team/union"><img src="/pub/images/icons/union_mascot.png"></a>
+                    <a class="pt-1" href="/team/union"><img src="/pub/images/icons/union.png"></a>
                     <a class="nav-link" href="/team/union">Union</a>
                 </div>
             </div>
@@ -71,7 +72,7 @@
             </div>
         </sec:authorize>
         <sec:authorize access="!isAuthenticated()">
-            <a class="nav-link mx-3" href="/account/login">My Account</a>
+            <a class="nav-link mx-3" href="/account/login">Sign In</a>
         </sec:authorize>
         <sec:authorize access="isAuthenticated()">
             <div class="dropdown me-3">
@@ -80,15 +81,17 @@
                     Hi <sec:authentication property="principal.username" />
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/account/detail">My Account</a></li>
+                    <li><a class="dropdown-item" href="/account/myAccount">My Account</a></li>
                     <li><a class="dropdown-item" href="/account/orderHistory">Order History</a></li>
                     <li><a class="dropdown-item" href="/account/logout">Log out</a></li>
                 </ul>
             </div>
         </sec:authorize>
-        <a id="cartLink" href="/order/cart" class="cart position-relative d-inline-flex mt-1 mx-1" aria-label="View your shopping cart">
+        <a id="cartLink" href="/order/cart" class="cart position-relative d-inline-flex mt-1 ms-2 me-1" aria-label="View your shopping cart">
             <i class="fa-solid fa-cart-shopping fa-lg"></i>
+            <c:if test="${totalItems > 0}">
             <span class="cart-basket d-flex align-items-center justify-content-center">${totalItems}</span>
+            </c:if>
         </a>
     </div>
 </nav>

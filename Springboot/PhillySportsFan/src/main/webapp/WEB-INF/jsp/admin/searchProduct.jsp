@@ -8,7 +8,7 @@
     </div>
 </section>
 
-<section class="py-5">
+<section class="py-3">
     <div class="container">
         <div class="row text-center justify-content-center">
             <div class="col-5">

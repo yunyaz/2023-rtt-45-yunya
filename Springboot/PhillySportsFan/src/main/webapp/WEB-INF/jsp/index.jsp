@@ -6,7 +6,6 @@
         <div class="row justify-content-center">
             <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-
                     <div class="carousel-item active">
                         <img src="/pub/images/index/carousel/76ers.jpg" class="carouselImages d-block w-100" alt="...">
                     </div>
