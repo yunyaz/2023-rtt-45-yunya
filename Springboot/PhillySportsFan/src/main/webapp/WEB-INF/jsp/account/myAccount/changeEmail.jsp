@@ -95,7 +95,7 @@
                                         </c:if>
                                     </div>
                                     <div class="row" style="padding-left: 13px; padding-right: 13px">
-                                        <button id="" type="submit" class="btn btn-primary mt-3">Change Email Address
+                                        <button id="" type="submit" class="btn btn-dark mt-3">Change Email Address
                                         </button>
                                     </div>
                                 </form>

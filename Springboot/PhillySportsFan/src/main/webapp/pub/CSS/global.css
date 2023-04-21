@@ -50,3 +50,7 @@ body {
     color: black;
 }
 
+::placeholder {
+    color: red;
+}
+

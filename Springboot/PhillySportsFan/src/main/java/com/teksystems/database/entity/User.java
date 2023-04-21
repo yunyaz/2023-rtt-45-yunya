@@ -47,9 +47,6 @@ public class User {
     @Column(name = "state")
     private String state;
 
-    @Column(name = "country")
-    private String country;
-
     @Column(name = "zipcode")
     private String zipcode;
 

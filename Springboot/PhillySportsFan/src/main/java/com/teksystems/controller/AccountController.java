@@ -5,6 +5,7 @@ import com.teksystems.database.dao.UserRoleDAO;
 import com.teksystems.database.entity.User;
 import com.teksystems.database.entity.UserRole;
 import com.teksystems.formbeans.ChangeEmailFormBean;
+import com.teksystems.formbeans.ChangePasswordFormBean;
 import com.teksystems.formbeans.CreateUserFormBean;
 import com.teksystems.security.AuthenticatedUserService;
 import jakarta.servlet.http.HttpSession;
@@ -144,6 +145,48 @@ public class AccountController {
 
         response.addObject("success", true);
 
+
+        return response;
+    }
+
+    @GetMapping("/myAccount/changePassword")
+    public ModelAndView changePassword() {
+        ModelAndView response = new ModelAndView("account/myAccount/changePassword");
+        return response;
+    }
+
+    @PostMapping("/myAccount/changePasswordSubmit")
+    public ModelAndView changePasswordSubmit(@Valid ChangePasswordFormBean form, BindingResult bindingResult, HttpSession session) {
+        ModelAndView response = new ModelAndView("account/myAccount/changePassword");
+        log.debug("In the account controller - change password");
+
+        response.addObject("form", form);
+
+        User user = authenticatedUserService.loadCurrentUser();
+
+        if (!passwordEncoder.matches(form.getCurrentPassword(), user.getPassword())) {
+            bindingResult.rejectValue("currentPassword", "error.currentPassword", "Invalid current password");
+        }
+
+        if (StringUtils.equals(form.getNewPassword(), form.getConfirmNewPassword()) == false){
+            bindingResult.rejectValue("confirmNewPassword", "error.confirmNewPassword", "New passwords do not match");
+        }
+
+        if (bindingResult.hasErrors()) {
+            for (FieldError error : bindingResult.getFieldErrors()) {
+                log.debug("Validation Error on field : " + error.getField() + " with message : " + error.getDefaultMessage());
+            }
+            response.addObject("bindingResult", bindingResult);
+            return response;
+        }
+
+        String encryptedNewPassword = passwordEncoder.encode(form.getNewPassword());
+        user.setPassword(encryptedNewPassword);
+        userDao.save(user);
+
+        authenticatedUserService.changeLoggedInUsername(session, user.getEmail(), form.getNewPassword());
+
+        response.addObject("success", true);
 
         return response;
     }

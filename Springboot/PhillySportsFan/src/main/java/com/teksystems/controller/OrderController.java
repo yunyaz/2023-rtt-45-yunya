@@ -3,7 +3,6 @@ package com.teksystems.controller;
 import com.teksystems.database.dao.OrderDAO;
 import com.teksystems.database.dao.OrderProductDAO;
 import com.teksystems.database.dao.ProductDAO;
-import com.teksystems.database.dao.UserDAO;
 import com.teksystems.database.entity.Order;
 import com.teksystems.database.entity.OrderProduct;
 import com.teksystems.database.entity.Product;
@@ -13,10 +12,11 @@ import com.teksystems.security.AuthenticatedUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -38,6 +38,11 @@ public class OrderController {
     private AuthenticatedUserService authenticatedUserService;
 
     private static final List<Integer> QUANTITY = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+    private static final List<String> STATE = Arrays.asList("AL", "AK", "AZ", "AR", "AS", "CA", "CO", "CT", "DE", "DC",
+            "FL", "GA", "GU", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO",
+            "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "MP", "OH", "OK", "OR", "PA", "PR", "RI", "SC", "SD",
+            "TN", "TX", "UT", "VT", "VA", "VI", "WA", "WV", "WI", "WY");
 
     @GetMapping("/cart")
     public ModelAndView cart() {
@@ -113,5 +118,12 @@ public class OrderController {
             orderProductDao.save(orderProduct);
         }
         return "redirect:/order/cart";
+    }
+
+    @GetMapping("/checkout")
+    public ModelAndView checkout() {
+        ModelAndView response = new ModelAndView("account/checkout");
+        response.addObject("states", STATE);
+        return response;
     }
 }

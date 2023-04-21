@@ -14,7 +14,7 @@
                    href="/account/myAccount/orderHistory">
                     <div class="card" style="height: 200px">
                         <div class="row justify-content-center">
-                            <div class="col-4 text-center ">
+                            <div class="col-4 text-center">
                                 <img class="mt-5 pt-2" src="/pub/images/icons/account/order.svg" style="width: 60px">
                             </div>
                             <div class="col-8 py-5 mt-2">
@@ -30,8 +30,9 @@
                    href="/account/myAccount/address">
                     <div class="card" style="height: 200px">
                         <div class="row justify-content-center">
-                            <div class="col-4 text-center ">
-                                <img class="mt-5 pt-2" src="/pub/images/icons/account/addressBook.svg" style="width: 60px">
+                            <div class="col-4 text-center">
+                                <img class="mt-5 pt-2" src="/pub/images/icons/account/addressBook.svg"
+                                     style="width: 65px">
                             </div>
                             <div class="col-8 py-5 mt-2">
                                 <h5>Addresses</h5>
@@ -49,7 +50,7 @@
                    href="/account/myAccount/changeEmail">
                     <div class="card" style="height: 200px">
                         <div class="row justify-content-center">
-                            <div class="col-4 text-center ">
+                            <div class="col-4 text-center">
                                 <img class="mt-5 pt-3" src="/pub/images/icons/account/email.svg" style="width: 50px">
                             </div>
                             <div class="col-8 py-5 mt-2">
@@ -65,8 +66,9 @@
                    href="/account/myAccount/changePassword">
                     <div class="card" style="height: 200px">
                         <div class="row justify-content-center">
-                            <div class="col-4 text-center ">
-                                <img class="mt-5 pt-2" src="/pub/images/icons/account/password.svg" style="width: 60px">
+                            <div class="col-4 text-center">
+                                <img class="mt-5 pt-2 ms-2" src="/pub/images/icons/account/password.svg"
+                                     style="width: 65px">
                             </div>
                             <div class="col-8 py-5 mt-2">
                                 <h5>Change Password</h5>

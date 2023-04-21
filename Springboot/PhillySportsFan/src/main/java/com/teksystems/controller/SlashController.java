@@ -21,6 +21,8 @@ public class SlashController {
     @Autowired
     private ProductDAO productDao;
 
+    private static final List<String> JERSEY_SIZE = Arrays.asList("S", "M", "L", "XL", "2XL");
+
     private static final List<Integer> QUANTITY = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
     @GetMapping({"/index", "/", "/index.html"})
@@ -54,6 +56,7 @@ public class SlashController {
 
         Product product = productDao.findById(id);
         response.addObject("product", product);
+        response.addObject("jerseySize", JERSEY_SIZE);
         response.addObject("quantityList", QUANTITY);
 
         return response;

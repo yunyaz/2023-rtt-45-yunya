@@ -88,7 +88,7 @@
                         </div>
                     </div>
                     <div class="row mt-5 mx-1">
-                        <a class="btn btn-primary" href="/order/checkout">Checkout</a>
+                        <a class="btn btn-dark" href="/order/checkout">Checkout</a>
                     </div>
                 </c:if>
             </div>
