@@ -7,6 +7,7 @@ import com.teksystems.database.entity.Order;
 import com.teksystems.database.entity.OrderProduct;
 import com.teksystems.database.entity.Product;
 import com.teksystems.database.entity.User;
+import com.teksystems.formbeans.CheckoutFormBean;
 import com.teksystems.formbeans.OrderFormBean;
 import com.teksystems.security.AuthenticatedUserService;
 import lombok.extern.slf4j.Slf4j;
@@ -123,6 +124,33 @@ public class OrderController {
     @GetMapping("/checkout")
     public ModelAndView checkout() {
         ModelAndView response = new ModelAndView("account/checkout");
+        log.debug("In order controller - checkout");
+
+        User user = authenticatedUserService.loadCurrentUser();
+        CheckoutFormBean form = new CheckoutFormBean();
+
+        if (user.getAddressLine1() != null) {
+            form.setFirstName(user.getFirstName());
+            form.setLastName(user.getLastName());
+            form.setAddressLine1(user.getAddressLine1());
+            form.setAddressLine2(user.getAddressLine2());
+            form.setCity(user.getCity());
+            form.setState(user.getState());
+            form.setZipcode(user.getZipcode());
+        }
+
+
+        response.addObject("form", form);
+
+        Order order = orderDao.findOrderInCart(user.getId());
+        response.addObject("order", order);
+
+        Double orderTotal = orderDao.getOrderTotal(order.getId());
+        response.addObject("orderTotal", orderTotal);
+
+        Integer totalItems = orderDao.getTotalItems(order.getId());
+        response.addObject("totalItems", totalItems);
+
         response.addObject("states", STATE);
         return response;
     }

@@ -48,4 +48,7 @@ public class CheckoutFormBean {
     @NotEmpty(message = "Security code is required")
     @Pattern(regexp = "^[0-9]{3}|[0-9]{4}$", message = "Invalid security code")
     private String securityCode;
+
+    @NotEmpty(message = "Credit card name is required")
+    private String creditCardName;
 }

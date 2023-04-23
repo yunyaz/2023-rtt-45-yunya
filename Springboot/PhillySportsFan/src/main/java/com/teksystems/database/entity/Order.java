@@ -23,6 +23,12 @@ public class Order {
     @Column(name = "id")
     private Integer id;
 
+    @Column(name = "user_id", insertable=false, updatable=false)
+    private Integer userId;
+
+    @Column(name = "status")
+    private String status;
+
     @Column(name = "order_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date orderDate;
@@ -31,11 +37,20 @@ public class Order {
     @Temporal(TemporalType.TIMESTAMP)
     private Date shippedDate;
 
-    @Column(name = "status")
-    private String status;
+    @Column(name = "address_line_1")
+    private String addressLine1;
 
-    @Column(name = "user_id", insertable=false, updatable=false)
-    private Integer userId;
+    @Column(name = "address_line_2")
+    private String addressLine2;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "state")
+    private String state;
+
+    @Column(name = "zipcode")
+    private String zipcode;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")

@@ -14,3 +14,49 @@
 </c:if>
 </div>
 </section>
+
+
+
+<div class="col-2"></div>
+<div class="col-3">
+    <h3>Order summary</h3>
+    <hr>
+    <div class="row mt-3">
+        <div class="col-7">
+            Subtotal (${totalItems} items)
+        </div>
+        <div class="col text-end">
+            $${orderTotal}
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            Shipping
+        </div>
+        <div class="col text-end">
+            <c:set var="shipping" value="${5}"/>
+            $
+            <fmt:formatNumber type="number" pattern="###.00" value="${shipping}"/>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            Sales Tax
+        </div>
+        <div class="col text-end">
+            <c:set var="tax" value="${orderTotal * 0.06}"/>
+            $
+            <fmt:formatNumber type="number" pattern="###.00" value="${tax}"/>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            Total
+        </div>
+        <div class="col text-end">
+            $
+            <fmt:formatNumber type="number" pattern="###.00" value="${orderTotal + shipping + tax}"/>
+        </div>
+    </div>
+    <hr>
+</div>
