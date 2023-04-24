@@ -10,7 +10,7 @@
                 <div class="alert text-center align-middle mt-5 py-5" role="alert"
                      style="width: 400px; color: black; background-color: #f4f6f8">
                     <i class="fa-solid fa-check fa-2xl" style="color: #434ea3;"></i>
-                    <h5 class="pt-4 pb-2">Email address was updated successfully!</h5>
+                    <h5 class="pt-4 pb-2">Thank you for your order!</h5>
                     <a id="startShopping" href="/index"
                        style="color: black; text-decoration-color: black"><h5
                             class="pt-5 pb-2">Continue shopping</h5></a>
@@ -20,8 +20,8 @@
                 <div class="col-7">
                     <h3>Checkout</h3>
                     <hr>
-                    <form action="/account/createAccountSubmit" method="POST">
-                        <h5 class="mt-4 mb-4">Shipping Address</h5>
+                    <form action="/order/checkoutSubmit" method="POST">
+                        <h5 class="pt-3 mb-4">Shipping Address</h5>
                         <div class="row">
                             <div class="col">
                                 <div class="mb-3">
@@ -115,8 +115,17 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="form-check mt-2 mb-3" style="margin-left: 11px">
+                                <input class="form-check-input" type="checkbox" id="saveAddress" name="saveAddress"
+                                       value="true">
+                                <label class="form-check-label" for="saveAddress">
+                                    Save as default address for future orders
+                                </label>
+                            </div>
+                        </div>
                         <hr>
-                        <div class="row mt-4 mb-4">
+                        <div class="row pt-3 mb-4">
                             <div class="col">
                                 <h5 class="">Billing</h5>
                             </div>
@@ -127,7 +136,6 @@
                                 <img class="" src="/pub/images/icons/payment/discover.svg" style="width: 40px">
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-6">
                                 <div class="mb-3 me-2">
@@ -186,17 +194,6 @@
                                 </c:if>
                             </div>
                         </div>
-
-                        <!--
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="subscription" name="subscription"
-                                   value="true">
-                            <label class="form-check-label" for="subscription">
-                                Yes! Subscribe me for exciting news about products, exclusive offers and more.
-                            </label>
-                        </div>
-                        -->
-
                         <div class="row mt-5" style="padding-left: 13px; padding-right: 13px">
                             <button type="submit" class="btn btn-dark">Place Order</button>
                         </div>

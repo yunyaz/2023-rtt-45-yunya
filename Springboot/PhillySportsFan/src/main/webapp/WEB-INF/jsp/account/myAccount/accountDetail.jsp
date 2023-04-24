@@ -27,7 +27,7 @@
             </div>
             <div class="col-4">
                 <a style="color: black; text-decoration: none; text-decoration-color: black"
-                   href="/account/myAccount/address">
+                   href="/account/myAccount/defaultAddress">
                     <div class="card" style="height: 200px">
                         <div class="row justify-content-center">
                             <div class="col-4 text-center">
@@ -35,7 +35,7 @@
                                      style="width: 65px">
                             </div>
                             <div class="col-8 py-5 mt-2">
-                                <h5>Addresses</h5>
+                                <h5>Default Address</h5>
                                 <h6 class="mt-3 me-3">Manage your saved addresses</h6>
                             </div>
                         </div>

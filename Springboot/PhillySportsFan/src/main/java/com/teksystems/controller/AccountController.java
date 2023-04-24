@@ -2,6 +2,7 @@ package com.teksystems.controller;
 
 import com.teksystems.database.dao.UserDAO;
 import com.teksystems.database.dao.UserRoleDAO;
+import com.teksystems.database.entity.Order;
 import com.teksystems.database.entity.User;
 import com.teksystems.database.entity.UserRole;
 import com.teksystems.formbeans.ChangeEmailFormBean;
@@ -21,6 +22,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -190,6 +193,33 @@ public class AccountController {
 
         return response;
     }
+
+    @GetMapping("/myAccount/orderHistory")
+    public ModelAndView orderHistory() {
+        ModelAndView response = new ModelAndView("account/myAccount/orderHistory");
+        log.debug("In account controller - order history");
+
+        User user = authenticatedUserService.loadCurrentUser();
+        List<Order> orderList = user.getOrders();
+
+        response.addObject("orders", orderList);
+
+        return response;
+    }
+
+    @GetMapping("/myAccount/defaultAddress")
+    public ModelAndView defaultAddress() {
+        ModelAndView response = new ModelAndView("account/myAccount/defaultAddress");
+        log.debug("In account controller - default address");
+
+        User user = authenticatedUserService.loadCurrentUser();
+
+        response.addObject("user", user);
+
+        return response;
+    }
+
+
 
     @GetMapping("message")
     public ModelAndView messageAlert() {

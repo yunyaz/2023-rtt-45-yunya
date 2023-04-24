@@ -2,7 +2,7 @@
 
 <jsp:include page="../include/header.jsp"/>
 
-<section class="py-5" style="background-color: #ebeff5; height: 750px">
+<section class="py-5" style="height: 750px">
     <div class="row justify-content-center">
         <c:if test="${success}">
             <div class="alert text-center align-middle mt-5 py-5" role="alert"
@@ -80,7 +80,7 @@
                             </label>
                         </div>
                         <div class="row" style="padding-left: 13px; padding-right: 13px">
-                            <button id="submitBtn" type="submit" class="btn btn-primary">Create Account</button>
+                            <button id="submitBtn" type="submit" class="btn btn-dark">Create Account</button>
                         </div>
                     </form>
                 </div>

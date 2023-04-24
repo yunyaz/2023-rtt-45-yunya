@@ -41,6 +41,8 @@ public class SlashController {
         ModelAndView response = new ModelAndView("search");
         log.debug("In slash controller - search product with searchParam = " + search);
 
+        
+
         List<Product> products = productDao.findByProductNameContainingIgnoreCase(search);
 
         response.addObject("productList", products);

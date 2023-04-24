@@ -28,7 +28,7 @@
     </div>
 </section>
 
-<section class="mt-5" style="height: 1150px">
+<section class="py-5">
     <div class="container">
         <div class="row pt-3">
             <c:forEach items="${productList}" var="product">

@@ -1,6 +1,5 @@
 package com.teksystems.formbeans;
 
-import com.teksystems.validation.EmailUnique;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
@@ -36,13 +35,14 @@ public class CheckoutFormBean {
     @Pattern(regexp = "^[0-9]{5}(?:-[0-9]{4})?$", message = "Invalid email format")
     private String zipcode;
 
+    private Boolean saveAddress;
+
     @NotEmpty(message = "Credit card number is required")
-    @Pattern(regexp = "^(?:4[0-9]{12}(?:[0-9]{3})? | (?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]" +
-            "|2720)[0-9]{12} | 3[47][0-9]{13} | 6(?:011|5[0-9]{2})[0-9]{12})$", message = "Invalid credit card")
+    @Pattern(regexp = "^[0-9]{16}|[0-9]{15}$", message = "Invalid credit card")
     private String creditCardNumber;
 
     @NotEmpty(message = "Expiration date is required")
-    @Pattern(regexp = "^[0-9]{4}$", message = "Invalid expiration date")
+    @Pattern(regexp = "^(0[1-9]|1[0-2])(2[3-8])$", message = "Invalid expiration date")
     private String expirationDate;
 
     @NotEmpty(message = "Security code is required")

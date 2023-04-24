@@ -3,6 +3,7 @@ package com.teksystems.controller;
 import com.teksystems.database.dao.OrderDAO;
 import com.teksystems.database.dao.OrderProductDAO;
 import com.teksystems.database.dao.ProductDAO;
+import com.teksystems.database.dao.UserDAO;
 import com.teksystems.database.entity.Order;
 import com.teksystems.database.entity.OrderProduct;
 import com.teksystems.database.entity.Product;
@@ -10,15 +11,25 @@ import com.teksystems.database.entity.User;
 import com.teksystems.formbeans.CheckoutFormBean;
 import com.teksystems.formbeans.OrderFormBean;
 import com.teksystems.security.AuthenticatedUserService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -34,6 +45,9 @@ public class OrderController {
 
     @Autowired
     private ProductDAO productDao;
+
+    @Autowired
+    private UserDAO userDao;
 
     @Autowired
     private AuthenticatedUserService authenticatedUserService;
@@ -139,7 +153,6 @@ public class OrderController {
             form.setZipcode(user.getZipcode());
         }
 
-
         response.addObject("form", form);
 
         Order order = orderDao.findOrderInCart(user.getId());
@@ -154,4 +167,59 @@ public class OrderController {
         response.addObject("states", STATE);
         return response;
     }
+
+    @PostMapping("/checkoutSubmit")
+    public ModelAndView checkoutSubmit(@Valid CheckoutFormBean form, BindingResult bindingResult) {
+        ModelAndView response = new ModelAndView("account/checkout");
+        log.debug("In order controller - checkout submit");
+
+        User user = authenticatedUserService.loadCurrentUser();
+
+        response.addObject("form", form);
+
+        Order order = orderDao.findOrderInCart(user.getId());
+        response.addObject("order", order);
+
+        Double orderTotal = orderDao.getOrderTotal(order.getId());
+        response.addObject("orderTotal", orderTotal);
+
+        Integer totalItems = orderDao.getTotalItems(order.getId());
+        response.addObject("totalItems", totalItems);
+
+        response.addObject("states", STATE);
+
+        if (bindingResult.hasErrors() ) {
+            for (FieldError error : bindingResult.getFieldErrors()) {
+                log.debug("Validation Error on field : " + error.getField() + " with message : " + error.getDefaultMessage());
+            }
+            response.addObject("bindingResult", bindingResult);
+            return response;
+        }
+
+        order.setOrderDate(new Date());
+        order.setStatus("complete");
+        order.setAddressLine1(form.getAddressLine1());
+        order.setAddressLine2(form.getAddressLine2());
+        order.setCity(form.getCity());
+        order.setState(form.getState());
+        order.setZipcode(form.getZipcode());
+
+        orderDao.save(order);
+
+        if(form.getSaveAddress() != null) {
+            user.setAddressLine1(form.getAddressLine1());
+            user.setAddressLine2(form.getAddressLine2());
+            user.setCity(form.getCity());
+            user.setState(form.getState());
+            user.setZipcode(form.getZipcode());
+        }
+
+        userDao.save(user);
+
+        response.addObject("success", true);
+
+        return response;
+    }
+
+
 }

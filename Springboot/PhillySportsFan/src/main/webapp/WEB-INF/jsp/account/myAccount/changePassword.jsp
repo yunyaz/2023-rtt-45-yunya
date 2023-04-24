@@ -17,9 +17,9 @@
                 </div>
                 <div class="row mt-3">
                     <a style="color: black; text-decoration: none; text-decoration-color: black"
-                       href="/account/myAccount/addresses">
+                       href="/account/myAccount/defaultAddress">
                         <img class="me-1" src="/pub/images/icons/account/addressBook.svg" style="width: 20px">
-                        Addresses
+                        Default Address
                     </a>
                 </div>
                 <div class="row mt-3">
