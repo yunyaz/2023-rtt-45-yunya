@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 @Controller
@@ -41,11 +39,17 @@ public class SlashController {
         ModelAndView response = new ModelAndView("search");
         log.debug("In slash controller - search product with searchParam = " + search);
 
-        
+        String[] searchWords = search.split(" ");
 
-        List<Product> products = productDao.findByProductNameContainingIgnoreCase(search);
+        Set<Product> resultSet = new HashSet<>(productDao.getAllProducts());
 
-        response.addObject("productList", products);
+        for (String word : searchWords) {
+            log.debug(word);
+            Set<Product> productSet = new HashSet<>(productDao.findByProductNameContainingIgnoreCase(word));
+            resultSet.retainAll(productSet);
+        }
+
+        response.addObject("productList", resultSet);
         response.addObject("searchParam", search);
 
         return response;

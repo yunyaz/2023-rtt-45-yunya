@@ -48,8 +48,6 @@
                             <hr>
                             <c:forEach items="${orders}" var="order">
                                 <c:if test="${order.getStatus() ne 'cart'}">
-
-
                                     <div class="row pt-2">
                                         <div class="col-4">
                                             <h6>Order#: ${order.getId()}</h6>

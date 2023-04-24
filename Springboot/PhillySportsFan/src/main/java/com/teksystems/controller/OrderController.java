@@ -107,7 +107,11 @@ public class OrderController {
             orderProduct = orderProductDao.findByOrderIdAndProductIdAndSize(order.getId(), form.getProductId(), form.getSize());
             orderProduct.setQuantity(orderProduct.getQuantity() + form.getQuantity());
         } else {
-            orderProduct.setSize(form.getSize());
+            if (form.getSize() == null) {
+                orderProduct.setSize("One Size");
+            } else {
+                orderProduct.setSize(form.getSize());
+            }
             orderProduct.setQuantity(form.getQuantity());
             orderProduct.setProduct(product);
             orderProduct.setOrder(order);

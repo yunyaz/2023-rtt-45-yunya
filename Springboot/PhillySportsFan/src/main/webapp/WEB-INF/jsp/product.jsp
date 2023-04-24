@@ -21,12 +21,17 @@
                     <div class="mb-5">
                         <div class="col-3">
                             <h6>Size</h6>
-                            <select id="size" name="size" class="form-select" aria-label="select size"
-                                    style="width: 100px;">
-                                <c:forEach items="${jerseySize}" var="size">
-                                    <option value="${size}">${size}</option>
-                                </c:forEach>
-                            </select>
+                            <c:if test="${product.category eq 'Hats'}">
+                                <button type="button" class="btn" style="border-color: lightgrey">One Size</button>
+                            </c:if>
+                            <c:if test="${(product.category ne 'Hats') && (product.category ne 'Accessories') && (product.category ne 'Collectibles')}">
+                                <select id="size" name="size" class="form-select" aria-label="select size"
+                                        style="width: 100px;">
+                                    <c:forEach items="${jerseySize}" var="size">
+                                        <option value="${size}">${size}</option>
+                                    </c:forEach>
+                                </select>
+                            </c:if>
                         </div>
                     </div>
                     <div class="mb-5">
@@ -41,7 +46,7 @@
                         </div>
                     </div>
                     <div class="row mb-5 px-3">
-                            <button type="submit" class="btn btn-dark">Add to Cart</button>
+                        <button type="submit" class="btn btn-dark">Add to Cart</button>
                     </div>
                     <div class="mb-5">
                         <h6>Description</h6>
