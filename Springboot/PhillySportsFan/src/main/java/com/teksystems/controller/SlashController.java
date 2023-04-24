@@ -44,7 +44,6 @@ public class SlashController {
         Set<Product> resultSet = new HashSet<>(productDao.getAllProducts());
 
         for (String word : searchWords) {
-            log.debug(word);
             Set<Product> productSet = new HashSet<>(productDao.findByProductNameContainingIgnoreCase(word));
             resultSet.retainAll(productSet);
         }
@@ -55,8 +54,8 @@ public class SlashController {
         return response;
     }
 
-    @GetMapping("/detail/{id}")
-    public ModelAndView productDetail(@PathVariable Integer id) {
+    @GetMapping("/team/{teamName}/detail/{id}")
+    public ModelAndView productDetail(@PathVariable String teamName, @PathVariable Integer id) {
         ModelAndView response = new ModelAndView("product");
         log.debug("In slash controller - product detail with id = " + id);
 
@@ -64,6 +63,7 @@ public class SlashController {
         response.addObject("product", product);
         response.addObject("jerseySize", JERSEY_SIZE);
         response.addObject("quantityList", QUANTITY);
+        response.addObject("teamName", teamName);
 
         return response;
     }

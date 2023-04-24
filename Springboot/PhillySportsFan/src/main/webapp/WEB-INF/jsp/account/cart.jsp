@@ -13,11 +13,14 @@
                     <div class="row">
                         <div class="col-3">
                             <a id="cartImageLink" href="/detail/${orderProduct.getProduct().getId()}">
-                                <img class="cartImage" src="${orderProduct.getProduct().getImgUrl()}" style="width: 150px" alt="">
+                                <img class="cartImage" src="${orderProduct.getProduct().getImgUrl()}"
+                                     style="width: 150px" alt="">
                             </a>
                         </div>
                         <div class="col-7">
-                            <a id="cartProductLink" href="/detail/${orderProduct.getProduct().getId()}"><p>${orderProduct.getProduct().getProductName()}</p></a>
+                            <a id="cartProductLink"
+                               href="/team/${orderProduct.getProduct().sportsTeam}/detail/${orderProduct.getProduct().getId()}">
+                                <p>${orderProduct.getProduct().getProductName()}</p></a>
                             <p>Size: ${orderProduct.getSize()}</p>
                             <div class="row">
                                 <div class="col">
@@ -26,7 +29,8 @@
                                         <input type="hidden" name="productId" value="${orderProduct.getProductId()}"/>
                                         <input type="hidden" name="size" value="${orderProduct.getSize()}"/>
                                         <span>Quantity:</span>
-                                        <select onchange="this.form.submit()" id="quantity" name="quantity" class="form-select-sm"
+                                        <select onchange="this.form.submit()" id="quantity" name="quantity"
+                                                class="form-select-sm"
                                                 aria-label="select quantity" style="width: 70px;">
                                             <c:forEach items="${quantityList}" var="quantity">
                                                 <option value="${quantity}"

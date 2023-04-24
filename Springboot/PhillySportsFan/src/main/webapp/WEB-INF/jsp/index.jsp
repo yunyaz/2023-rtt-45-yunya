@@ -34,7 +34,7 @@
             <c:forEach items="${productList}" var="product">
                 <div class="col-3 mb-5">
                     <div class="card border border-0" style="height: 450px;">
-                        <a id="productCard" href="/detail/${product.id}">
+                        <a id="productCard" href="/team/${product.sportsTeam}/detail/${product.id}">
                             <img class="card-img-top" src="${product.imgUrl}" alt="">
                             <div class="card-body">
                                 <p id="price" style="color: #575a5e">$${product.price}</p>

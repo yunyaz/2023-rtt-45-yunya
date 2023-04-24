@@ -21,10 +21,10 @@
                 <div class="pb-3"><img src="/pub/images/icons/footer/phone.svg" style="width: 20px"> 1.800.123.456</div>
                 <div class="pb-3"><img src="/pub/images/icons/footer/email.svg" style="width: 20px"> PhillySportsShop@gmail.com</div>
                 <div class="pb-3">
-                    <img src="/pub/images/icons/footer/facebook.svg" style="width: 30px">
-                    <img src="/pub/images/icons/footer/instagram.svg" style="width: 30px">
-                    <img src="/pub/images/icons/footer/pinterest.svg" style="width: 30px">
-                    <img src="/pub/images/icons/footer/tiktok.svg" style="width: 32px">
+                    <img src="/pub/images/icons/footer/facebook.svg" style="width: 30px; margin-right: 5px">
+                    <img src="/pub/images/icons/footer/instagram.svg" style="width: 30px; margin-right: 5px">
+                    <img src="/pub/images/icons/footer/pinterest.svg" style="width: 30px; margin-right: 5px">
+                    <img src="/pub/images/icons/footer/tiktok.svg" style="width: 30px; margin-right: 5px">
                 </div>
             </div>
         </div>

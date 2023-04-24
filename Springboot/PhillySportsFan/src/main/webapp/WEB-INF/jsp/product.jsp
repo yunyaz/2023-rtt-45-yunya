@@ -3,6 +3,29 @@
 
 <jsp:include page="include/header.jsp"/>
 
+<section class="border-bottom">
+    <ul class="nav justify-content-evenly">
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/team/${teamName}/jerseys">Jerseys</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/team/${teamName}/t-shirts">T-shirts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/team/${teamName}/sweatshirts">Sweatshirts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/team/${teamName}/hats">Hats</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/team/${teamName}/accessories">Accessories</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/team/${teamName}/collectibles">Collectibles</a>
+        </li>
+    </ul>
+</section>
+
 <section class="py-5">
     <div class="container">
         <div class="row">
@@ -54,6 +77,28 @@
                     </div>
                 </form>
             </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <h3>Reviews</h3>
+            <p>
+                <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Write a review
+                </button>
+            </p>
+            <div class="collapse" id="collapseExample">
+                <form action="/account/reviewSubmit" method="POST">
+                    <textarea id="review" name="review" class="form-control" rows="5"
+                              aria-describedby="descriptionHelp"></textarea>
+
+                </form>
+            </div>
+            <hr>
+
         </div>
     </div>
 </section>
