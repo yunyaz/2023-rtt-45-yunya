@@ -100,15 +100,10 @@
                                             for="star2"></label>
                                         <input type="radio" id="star1" name="rating" value="1"/><label
                                             for="star1"></label>
-                                        <c:if test="${bindingResult.hasFieldErrors('rating')}">
-                                            <c:forEach items="${bindingResult.getFieldErrors('rating')}" var="error">
-                                                <div class="errorMessage" style="color: red;">${error.getDefaultMessage()}</div>
-                                            </c:forEach>
-                                        </c:if>
                                     </div>
                                 </div>
                                 <div class="row">
-                                     <textarea id="review" name="review" class="form-control ms-2 mb-3" rows="5" style="width: 800px"
+                                     <textarea id="comment" name="comment" class="form-control ms-2 mb-3" rows="5" style="width: 800px"
                                         aria-describedby="descriptionHelp"></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-dark mb-3">Submit</button>

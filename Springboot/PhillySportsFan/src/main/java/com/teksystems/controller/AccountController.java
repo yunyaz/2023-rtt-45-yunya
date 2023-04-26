@@ -1,13 +1,14 @@
 package com.teksystems.controller;
 
+import com.teksystems.database.dao.ProductDAO;
+import com.teksystems.database.dao.ReviewDAO;
 import com.teksystems.database.dao.UserDAO;
 import com.teksystems.database.dao.UserRoleDAO;
-import com.teksystems.database.entity.Order;
-import com.teksystems.database.entity.User;
-import com.teksystems.database.entity.UserRole;
+import com.teksystems.database.entity.*;
 import com.teksystems.formbeans.ChangeEmailFormBean;
 import com.teksystems.formbeans.ChangePasswordFormBean;
 import com.teksystems.formbeans.CreateUserFormBean;
+import com.teksystems.formbeans.ReviewFormBean;
 import com.teksystems.security.AuthenticatedUserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -23,7 +24,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -36,6 +40,12 @@ public class AccountController {
 
     @Autowired
     private UserRoleDAO userRoleDao;
+
+    @Autowired
+    private ReviewDAO reviewDao;
+
+    @Autowired
+    private ProductDAO productDao;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -217,6 +227,32 @@ public class AccountController {
         User user = authenticatedUserService.loadCurrentUser();
 
         response.addObject("user", user);
+
+        return response;
+    }
+
+    @PostMapping("/reviewSubmit")
+    public ModelAndView reviewSubmit(@Valid ReviewFormBean form) {
+        ModelAndView response = new ModelAndView("productDetail");
+        log.debug("In account controller - review submit");
+
+
+        User user = authenticatedUserService.loadCurrentUser();
+
+        Product product = productDao.findById(form.getProductId());
+
+        Review review = new Review();
+        if (form.getRating() != null) {
+            review.setUser(user);
+            review.setProduct(product);
+            review.setRating(Integer.valueOf(form.getRating()));
+            review.setComment(form.getComment());
+            review.setDate(new Date());
+
+            reviewDao.save(review);
+        }
+
+        response.setViewName("redirect:/team/" + product.getSportsTeam() + "/detail/" + product.getId());
 
         return response;
     }

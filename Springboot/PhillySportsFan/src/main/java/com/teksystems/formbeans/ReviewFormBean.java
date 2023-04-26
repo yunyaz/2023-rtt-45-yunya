@@ -1,5 +1,6 @@
 package com.teksystems.formbeans;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -7,13 +8,13 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class OrderFormBean {
+public class ReviewFormBean {
 
-    private Integer orderId;
+    private Integer userId;
 
     private Integer productId;
 
-    private String size;
+    private String rating;
 
-    private Integer quantity;
+    private String comment;
 }

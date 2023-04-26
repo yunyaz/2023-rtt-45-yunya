@@ -50,7 +50,29 @@ body {
     color: black;
 }
 
-::placeholder {
-    color: red;
-}
 
+.rating {
+    width: 200px;
+    height: 35px;
+    padding-left: 0;
+}
+.rating label {
+    float: right;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+.rating label:not(:first-of-type) {
+    padding-right: 2px;
+}
+.rating label:before {
+    content: "\2605";
+    font-size: 25px;
+    color: #ccc;
+}
+.rating input {
+    display: none;
+}
+.rating input:checked ~ label:before, .rating:not(:checked) > label:hover:before, .rating:not(:checked) > label:hover ~ label:before {
+    color: #f9df4a;
+}

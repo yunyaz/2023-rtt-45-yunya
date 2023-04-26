@@ -43,6 +43,11 @@ public class Product {
     @Column(name = "img_url")
     private String imgUrl;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<OrderProduct> orderProductList = new ArrayList<>();
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Review> reviews = new ArrayList<>();
 }

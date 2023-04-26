@@ -6,35 +6,41 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
 @Entity
-@Table(name = "order_product")
-public class OrderProduct {
+@Table(name = "reviews")
+public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "order_id", insertable=false, updatable=false)
-    private Integer orderId;
+    @Column(name = "user_id", insertable=false, updatable=false)
+    private Integer userId;
 
     @Column(name = "product_id", insertable=false, updatable=false)
     private Integer productId;
 
-    @Column(name = "size")
-    private String size;
+    @Column(name = "rating")
+    private Integer rating;
 
-    @Column(name = "quantity")
-    private Integer quantity;
+    @Column(name = "comment")
+    private String comment;
+
+    @Column(name = "date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date;
 
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)

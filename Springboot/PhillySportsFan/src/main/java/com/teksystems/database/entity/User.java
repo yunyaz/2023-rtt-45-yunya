@@ -50,10 +50,16 @@ public class User {
     @Column(name = "zipcode")
     private String zipcode;
 
+    @ToString.Exclude
     @Column(name = "subscription", columnDefinition = "TINYINT")
 //    @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean subscription = false;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Review> reviews = new ArrayList<>();
 }

@@ -54,10 +54,12 @@ public class Order {
     @Column(name = "zipcode")
     private String zipcode;
 
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<OrderProduct> orderProductList = new ArrayList<>();
 }

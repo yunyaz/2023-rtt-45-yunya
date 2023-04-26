@@ -1,7 +1,12 @@
 package com.teksystems.controller;
 
+import com.teksystems.database.dao.OrderProductDAO;
 import com.teksystems.database.dao.ProductDAO;
+import com.teksystems.database.entity.OrderProduct;
 import com.teksystems.database.entity.Product;
+import com.teksystems.database.entity.Review;
+import com.teksystems.database.entity.User;
+import com.teksystems.security.AuthenticatedUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +23,12 @@ public class SlashController {
 
     @Autowired
     private ProductDAO productDao;
+
+    @Autowired
+    private OrderProductDAO orderProductDao;
+
+    @Autowired
+    private AuthenticatedUserService authenticatedUserService;
 
     private static final List<String> JERSEY_SIZE = Arrays.asList("S", "M", "L", "XL", "2XL");
 
@@ -56,7 +67,7 @@ public class SlashController {
 
     @GetMapping("/team/{teamName}/detail/{id}")
     public ModelAndView productDetail(@PathVariable String teamName, @PathVariable Integer id) {
-        ModelAndView response = new ModelAndView("product");
+        ModelAndView response = new ModelAndView("productDetail");
         log.debug("In slash controller - product detail with id = " + id);
 
         Product product = productDao.findById(id);
@@ -65,12 +76,24 @@ public class SlashController {
         response.addObject("quantityList", QUANTITY);
         response.addObject("teamName", teamName);
 
+        if (authenticatedUserService.isAuthenticated()) {
+            User user = authenticatedUserService.loadCurrentUser();
+            if (orderProductDao.findByUserIdAndProductIdInCompleteOrder(user.getId(), product.getId()) != null) {
+                response.addObject("ordered", true);
+            }
+        }
+
+        List<Review> reviewList = product.getReviews();
+        Collections.reverse(reviewList);
+
+        response.addObject("reviews", reviewList);
+
         return response;
     }
 
     @GetMapping("/team/{teamName}")
     public ModelAndView team(@PathVariable String teamName) {
-        ModelAndView response = new ModelAndView("team");
+        ModelAndView response = new ModelAndView("teamProducts");
         log.debug("In slash controller - team = " + teamName);
 
         List<Product> products = productDao.findBySportsTeam(teamName);
