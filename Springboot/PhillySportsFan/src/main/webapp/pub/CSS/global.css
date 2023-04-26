@@ -50,29 +50,64 @@ body {
     color: black;
 }
 
-
+/* Ratings widget */
 .rating {
     width: 200px;
     height: 35px;
     padding-left: 0;
 }
+
+/* Hide radio */
+.rating input {
+    display: none;
+}
+
+/* Order correctly by floating highest to the right */
 .rating label {
     float: right;
     width: 35px;
     height: 35px;
     cursor: pointer;
 }
-.rating label:not(:first-of-type) {
-    padding-right: 2px;
-}
+
 .rating label:before {
     content: "\2605";
     font-size: 25px;
     color: #ccc;
 }
-.rating input {
+
+/* Click + hover color */
+.rating input:checked ~ label:before,
+.rating:not(:checked) > label:hover:before,
+.rating:not(:checked) > label:hover ~ label:before {
+    color: #f9df4a;
+}
+
+.reviewRating {
+    width: 127px;
+    height: 25px;
+    padding: 0;
+}
+
+.reviewRating input {
     display: none;
 }
-.rating input:checked ~ label:before, .rating:not(:checked) > label:hover:before, .rating:not(:checked) > label:hover ~ label:before {
+
+.reviewRating label {
+    float: right;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+#checkedStar:before {
+    content: "\2605";
+    font-size: 18px;
     color: #f9df4a;
+}
+
+#uncheckedStar:before {
+    content: "\2605";
+    font-size: 18px;
+    color: #ccc;
 }

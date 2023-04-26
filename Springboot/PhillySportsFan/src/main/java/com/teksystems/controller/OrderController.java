@@ -204,6 +204,13 @@ public class OrderController {
 
         orderDao.save(order);
 
+        List<OrderProduct> orderProducts = order.getOrderProductList();
+        for (OrderProduct op : orderProducts) {
+            Product product = op.getProduct();
+            product.setQuantityInStock(product.getQuantityInStock() - op.getQuantity());
+            productDao.save(product);
+        }
+
         if(form.getSaveAddress() != null) {
             user.setAddressLine1(form.getAddressLine1());
             user.setAddressLine2(form.getAddressLine2());

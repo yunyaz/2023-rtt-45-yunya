@@ -35,9 +35,27 @@
             <div class="col-5">
                 <form action="/order/addToCart" method="POST">
                     <input type="hidden" name="productId" value="${product.id}"/>
-                    <div class="row mb-3">
+                    <div class="row mb-2">
                         <h5>${product.productName}</h5>
                     </div>
+                    <div class="row ps-2 mb-3">
+                        <div class="col-3 reviewRating">
+                            <c:if test="${avgRating ne 5}">
+                                <c:forEach var="i" begin="1" end="${5 - avgRating}">
+                                    <input type="radio" id="reviewStar${i}" name="rating" value="${i}"/><label
+                                        for="reviewStar${i}" id="uncheckedStar"></label>
+                                </c:forEach>
+                            </c:if>
+                            <c:forEach var="i" begin="${5 - avgRating + 1}" end="5">
+                                <input type="radio" id="reviewStar${i}" name="rating" value="${i}"/><label
+                                    for="reviewStar${i}" id="checkedStar"></label>
+                            </c:forEach>
+                        </div>
+                        <div class="col" style="padding-top: 2px">
+                            <a style="color: black" href="#readReviews">(Read ${reviews.size()} Reviews)</a>
+                        </div>
+                    </div>
+
                     <div class="row mb-5">
                         <h6>$${product.price}</h6>
                     </div>
@@ -58,19 +76,33 @@
                         </div>
                     </div>
                     <div class="mb-5">
-                        <div class="col-3">
-                            <h6>Quantity</h6>
-                            <select id="quantity" name="quantity" class="form-select" aria-label="select quantity"
-                                    style="width: 100px;">
-                                <c:forEach items="${quantityList}" var="quantity">
-                                    <option value="${quantity}">${quantity}</option>
-                                </c:forEach>
-                            </select>
+                        <h6>Quantity</h6>
+                        <div class="row">
+                            <div class="col-3">
+                                <select id="quantity" name="quantity" class="form-select" aria-label="select quantity"
+                                        style="width: 100px;">
+                                    <c:forEach items="${quantityList}" var="quantity">
+                                        <option value="${quantity}">${quantity}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                            <c:if test="${product.quantityInStock > 0 && product.quantityInStock < 20}">
+                                <div class="col pt-2">
+                                    Low Stock
+                                </div>
+                            </c:if>
                         </div>
                     </div>
-                    <div class="row mb-5 mx-1">
-                        <button type="submit" class="btn btn-dark">Add to Cart</button>
-                    </div>
+                    <c:if test="${product.quantityInStock eq 0}">
+                        <div class="row mb-5 mx-1">
+                            <button type="button" class="btn btn-secondary">Out of Stock</button>
+                        </div>
+                    </c:if>
+                    <c:if test="${product.quantityInStock > 0}">
+                        <div class="row mb-5 mx-1">
+                            <button type="submit" class="btn btn-dark">Add to Cart</button>
+                        </div>
+                    </c:if>
                     <div class="mb-5">
                         <h6>Description</h6>
                         <p>${product.description}</p>
@@ -103,8 +135,9 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                     <textarea id="comment" name="comment" class="form-control ms-2 mb-3" rows="5" style="width: 800px"
-                                        aria-describedby="descriptionHelp"></textarea>
+                                     <textarea id="comment" name="comment" class="form-control ms-2 mb-3" rows="5"
+                                               style="width: 800px"
+                                               aria-describedby="descriptionHelp"></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-dark mb-3">Submit</button>
                             </form>
@@ -118,15 +151,46 @@
 
 <section class="py-5">
     <div class="container">
-        <div class="row">
-            <h4>Reviews</h4>
-            <hr>
+        <a id="readReviews"><h4>Reviews (${reviews.size()})</h4></a>
+        <hr>
+        <c:if test="${empty reviews && ordered}">
+            <div>Not yet rated. Be the first to review this item.</div>
+        </c:if>
+        <c:if test="${not empty reviews}">
             <c:forEach items="${reviews}" var="review">
-                <div class="row">${review.getComment()}</div>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="mb-2">${review.getDate().toString().substring(0, 10)}</div>
+                        <div>By ${review.getUser().getFirstName()}</div>
+                        <div>From ${review.getUser().getCity()}, ${review.getUser().getState()}</div>
+                    </div>
+                    <div class="col-8">
+                        <div class="row mb-1">
+                            <div class="reviewRating">
+                                <c:if test="${review.getRating() ne 5}">
+                                    <c:forEach var="i" begin="1" end="${5 - review.getRating()}">
+                                        <input type="radio" id="reviewStar${i}" name="rating" value="${i}"/><label
+                                            for="reviewStar${i}" id="uncheckedStar"></label>
+                                    </c:forEach>
+                                </c:if>
+                                <c:forEach var="i" begin="${5 - review.getRating() + 1}" end="5">
+                                    <input type="radio" id="reviewStar${i}" name="rating" value="${i}"/><label
+                                        for="reviewStar${i}" id="checkedStar"></label>
+                                </c:forEach>
+                            </div>
+                        </div>
+                        <div class="row">
+                                ${review.getComment()}
+                        </div>
+                    </div>
+                </div>
                 <hr>
             </c:forEach>
-        </div>
+        </c:if>
+    </div>
     </div>
 </section>
+
+<script src="/pub/"></script>
 
 <jsp:include page="include/footer.jsp"/>

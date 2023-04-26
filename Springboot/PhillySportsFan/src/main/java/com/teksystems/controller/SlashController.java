@@ -78,13 +78,26 @@ public class SlashController {
 
         if (authenticatedUserService.isAuthenticated()) {
             User user = authenticatedUserService.loadCurrentUser();
-            if (orderProductDao.findByUserIdAndProductIdInCompleteOrder(user.getId(), product.getId()) != null) {
+            if (orderProductDao.findByUserIdAndProductIdInCompleteOrder(user.getId(), product.getId()).size() != 0) {
+                List<Integer> orderId = orderProductDao.findByUserIdAndProductIdInCompleteOrder(user.getId(), product.getId());
+                log.debug(orderId.toString());
                 response.addObject("ordered", true);
             }
         }
 
         List<Review> reviewList = product.getReviews();
         Collections.reverse(reviewList);
+
+//        Double sumRating = 0.0;
+//        for (Review review: reviewList) {
+//            sumRating += review.getRating();
+//        }
+//        Integer avgRating = (int)Math.round(sumRating / reviewList.size());
+
+        if (reviewList.size() != 0) {
+            Integer avgRating = (int)Math.round(reviewList.stream().mapToDouble(r -> r.getRating()).average().getAsDouble());
+            response.addObject("avgRating", avgRating);
+        }
 
         response.addObject("reviews", reviewList);
 
@@ -105,7 +118,7 @@ public class SlashController {
 
     @GetMapping("/team/{teamName}/{category}")
     public ModelAndView category(@PathVariable String teamName, @PathVariable String category) {
-        ModelAndView response = new ModelAndView("team");
+        ModelAndView response = new ModelAndView("teamProducts");
         log.debug("In slash controller - team = " + teamName + " category = " + category);
 
         List<Product> products = productDao.findBySportsTeamAndCategory(teamName, category);
