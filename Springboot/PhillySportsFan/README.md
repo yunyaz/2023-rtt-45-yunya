@@ -5,7 +5,7 @@ The objective of this project is to design and develop an online shopping websit
 
 ## Features
 1. Product Catalog: The home page shows a carousel of fans wearing sports gear from differet teams, and then list some popular products. In the navbar, customers can select which sports team they would like to browse products. 
-![home]("./src/main/webapp/pub/images/readme/home.png")
+![home](".PhillySportsFan/src/main/webapp/pub/images/readme/home.png")
 
 
 
