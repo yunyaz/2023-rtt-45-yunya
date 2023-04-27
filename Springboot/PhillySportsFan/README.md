@@ -8,7 +8,7 @@ The objective of this project is to design and develop an online shopping websit
 
 ![home](./readmeImages/home.png)
 
-![home2](./readmeImages/home2.png)
+![home products](./readmeImages/homeProducts.png)
 
 
 
