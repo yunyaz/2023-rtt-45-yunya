@@ -4,17 +4,14 @@
 The objective of this project is to design and develop an online shopping website that sells sports gear for major sports teams in Philadelphia. Sports fans are usually fans of several local sports teams, so this website will allow customers to purchase sports gear products for different sports teams at one website. The website will have a user-friendly interface that will enable users to browse products based on teams, search for products, view product descriptions, add products to their cart, and complete the checkout process.
 
 ## Features
-1. Product Catalog: The home page shows a carousel of fans wearing sports gear from differet teams, and then list some popular products. In the navbar, customers can select which sports team they would like to browse products. 
+### 1. Product Catalog: 
+
+The home page shows a carousel of fans wearing sports gear from differet teams, and then list some popular products. In the navbar, customers can select which sports team they would like to browse products. 
 
 ![home](./readmeImages/home.png)
 
-
-
-
-
-the website has Customers browse through different categories of sports gear products. Users will be able to filter products by sport, price, brand, and other relevant criteria.
-
 ![product](./readmeImages/product.png)
+
 
 
 
