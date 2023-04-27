@@ -12,7 +12,11 @@ The home page shows a carousel of fans wearing sports gear from differet teams, 
 
 ![product](./readmeImages/product.png)
 
+In each team page, customers can select the category of products they would like to browse.
 
+![team](./readmeImages/team.png)
+
+Customers can also search for products.
 
 
 User Registration: Customers will be able to register and create their accounts on the website. They will be required to provide basic information such as name, email address, and contact details.
