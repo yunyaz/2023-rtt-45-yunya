@@ -8,11 +8,13 @@ The objective of this project is to design and develop an online shopping websit
 
 ![home](./readmeImages/home.png)
 
-![home products](./readmeImages/homeProducts.png)
+
 
 
 
 the website has Customers browse through different categories of sports gear products. Users will be able to filter products by sport, price, brand, and other relevant criteria.
+
+![home products](./readmeImages/homeProducts.png)
 
 User Registration: Customers will be able to register and create their accounts on the website. They will be required to provide basic information such as name, email address, and contact details.
 Product Catalog: The website will feature a comprehensive product catalog that will allow users to browse through different categories of sports gear products. Users will be able to filter products by sport, price, brand, and other relevant criteria.
