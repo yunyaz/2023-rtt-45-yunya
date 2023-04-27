@@ -33,23 +33,23 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="navbar-nav">
                 <div class="d-inline-flex ps-4">
-                    <a class="pt-1" href="/team/eagles"><img src="/pub/images/icons/eagles.png"></a>
+                    <a class="pt-1" href="/team/eagles"><img src="/pub/images/icons/header/eagles.png"></a>
                     <a class="nav-link" href="/team/eagles">Eagles</a>
                 </div>
                 <div class="d-inline-flex ps-4">
-                    <a class="pt-1" href="/team/phillies"><img src="/pub/images/icons/phillies.png"></a>
+                    <a class="pt-1" href="/team/phillies"><img src="/pub/images/icons/header/phillies.png"></a>
                     <a class="nav-link" href="/team/phillies">Phillies</a>
                 </div>
                 <div class="d-inline-flex ps-4">
-                    <a class="" href="/team/76ers"><img src="/pub/images/icons/76ers.png"></a>
+                    <a class="" href="/team/76ers"><img src="/pub/images/icons/header/76ers.png"></a>
                     <a class="nav-link" href="/team/76ers">76ers</a>
                 </div>
                 <div class="d-inline-flex ps-4">
-                    <a class="pt-2" href="/team/flyers"><img src="/pub/images/icons/flyers.png"></a>
+                    <a class="pt-2" href="/team/flyers"><img src="/pub/images/icons/header/flyers.png"></a>
                     <a class="nav-link" href="/team/flyers">Flyers</a>
                 </div>
                 <div class="d-inline-flex ps-4">
-                    <a class="pt-1" href="/team/union"><img src="/pub/images/icons/union.png"></a>
+                    <a class="pt-1" href="/team/union"><img src="/pub/images/icons/header/union.png"></a>
                     <a class="nav-link" href="/team/union">Union</a>
                 </div>
             </div>

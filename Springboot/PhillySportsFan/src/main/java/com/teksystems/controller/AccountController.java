@@ -256,12 +256,4 @@ public class AccountController {
 
         return response;
     }
-
-
-
-
-    @GetMapping("message")
-    public ModelAndView messageAlert() {
-        return new ModelAndView("account/message");
-    }
 }

@@ -55,7 +55,7 @@ public class OrderController {
 
     @GetMapping("/cart")
     public ModelAndView cart() {
-        ModelAndView response = new ModelAndView("account/cart");
+        ModelAndView response = new ModelAndView("order/cart");
         log.debug("In order controller - cart");
 
         User user = authenticatedUserService.loadCurrentUser();
@@ -135,7 +135,7 @@ public class OrderController {
 
     @GetMapping("/checkout")
     public ModelAndView checkout() {
-        ModelAndView response = new ModelAndView("account/checkout");
+        ModelAndView response = new ModelAndView("order/checkout");
         log.debug("In order controller - checkout");
 
         User user = authenticatedUserService.loadCurrentUser();
@@ -168,7 +168,7 @@ public class OrderController {
 
     @PostMapping("/checkoutSubmit")
     public ModelAndView checkoutSubmit(@Valid CheckoutFormBean form, BindingResult bindingResult) {
-        ModelAndView response = new ModelAndView("account/checkout");
+        ModelAndView response = new ModelAndView("order/checkout");
         log.debug("In order controller - checkout submit");
 
         User user = authenticatedUserService.loadCurrentUser();
@@ -225,6 +225,4 @@ public class OrderController {
 
         return response;
     }
-
-
 }

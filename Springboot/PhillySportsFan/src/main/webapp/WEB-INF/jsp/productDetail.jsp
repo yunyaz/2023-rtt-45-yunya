@@ -149,7 +149,7 @@
     </div>
 </section>
 
-<section class="py-5">
+<section class="pt-3 pb-5">
     <div class="container">
         <a id="readReviews"><h4>Reviews (${reviews.size()})</h4></a>
         <hr>
