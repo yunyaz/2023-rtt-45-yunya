@@ -11,8 +11,6 @@ The home page shows a carousel of fans wearing sports gear from differet teams, 
 
 ![home](./readmeImages/home.png)
 
-![product](./readmeImages/product.png)
-
 
 
 In each team page, customers can select the category of products they would like to browse.
