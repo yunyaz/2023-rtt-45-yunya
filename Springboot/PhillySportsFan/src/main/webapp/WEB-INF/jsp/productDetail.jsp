@@ -191,6 +191,6 @@
     </div>
 </section>
 
-<script src="/pub/"></script>
+<script src="/pub/js/productDetail.js"></script>
 
 <jsp:include page="include/footer.jsp"/>
