@@ -7,21 +7,16 @@ The objective of this project is to design and develop an online shopping websit
 ## Tech stack
 Front-end:
 
-HTML and CSS
 HTML and CSS are used to create the website's layout and design. HTML defines the structure of the website, and CSS styles the website's visual appearance.
 
-JavaScript
 JavaScript is used to create interactive elements on the website.
 
 Back-end:
 
-Java
 Java is used as the programming language to build the website's backend functionality. It handles business logic and can interact with databases.
 
-Spring Boot
-It provides a simplified way to create web applications and manages many of the underlying dependencies and configurations. Spring Boot also handles security, authentication, and authorization.
+Spring Boot is used to create web applications and manages many of the underlying dependencies and configurations. Spring Boot also handles security, authentication, and authorization.
 
-MySQL
 MySQL is used as the database to store the website's data.
 
 ## Features
