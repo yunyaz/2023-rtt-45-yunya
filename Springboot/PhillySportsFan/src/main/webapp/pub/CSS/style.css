@@ -111,3 +111,12 @@ body {
     font-size: 18px;
     color: #ccc;
 }
+
+.category-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.category-link.active {
+    background-color: #ececee;
+}

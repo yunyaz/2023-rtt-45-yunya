@@ -17,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.*;
 
+import static com.teksystems.controller.AdminController.CATEGORY;
+
 @Slf4j
 @Controller
 public class SlashController {
@@ -75,6 +77,7 @@ public class SlashController {
         response.addObject("jerseySize", JERSEY_SIZE);
         response.addObject("quantityList", QUANTITY);
         response.addObject("teamName", teamName);
+        response.addObject("categoryList", CATEGORY);
 
         if (authenticatedUserService.isAuthenticated()) {
             User user = authenticatedUserService.loadCurrentUser();
@@ -112,6 +115,7 @@ public class SlashController {
         List<Product> products = productDao.findBySportsTeam(teamName);
         response.addObject("productList", products);
         response.addObject("teamName", teamName);
+        response.addObject("categoryList", CATEGORY);
 
         return response;
     }
@@ -124,7 +128,7 @@ public class SlashController {
         List<Product> products = productDao.findBySportsTeamAndCategory(teamName, category);
         response.addObject("productList", products);
         response.addObject("teamName", teamName);
-//        response.addObject("category", category);
+        response.addObject("categoryList", CATEGORY);
 
         return response;
     }

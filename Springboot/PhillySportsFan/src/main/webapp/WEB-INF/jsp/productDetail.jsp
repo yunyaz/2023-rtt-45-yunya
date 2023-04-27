@@ -5,24 +5,11 @@
 
 <section class="border-bottom">
     <ul class="nav justify-content-evenly">
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/team/${teamName}/jerseys">Jerseys</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/team/${teamName}/t-shirts">T-shirts</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/team/${teamName}/sweatshirts">Sweatshirts</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/team/${teamName}/hats">Hats</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/team/${teamName}/accessories">Accessories</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/team/${teamName}/collectibles">Collectibles</a>
-        </li>
+        <c:forEach items="${categoryList}" var="category">
+            <li class="nav-item">
+                <a class="nav-link category-link" href="/team/${teamName}/${category.toLowerCase()}">${category}</a>
+            </li>
+        </c:forEach>
     </ul>
 </section>
 
@@ -190,7 +177,5 @@
     </div>
     </div>
 </section>
-
-<script src="/pub/js/productDetail.js"></script>
 
 <jsp:include page="include/footer.jsp"/>

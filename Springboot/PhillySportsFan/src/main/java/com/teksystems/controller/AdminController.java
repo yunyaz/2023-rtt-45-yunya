@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,8 +19,8 @@ import java.util.List;
 @PreAuthorize("hasAuthority('ADMIN')")
 public class AdminController {
 
-    public static final List<String> sportsTeams = Arrays.asList("Eagles", "Phillies", "76ers", "Flyers", "Union");
-    public static final List<String> category = Arrays.asList("Jerseys", "T-shirts", "Sweatshirts", "Hats", "Accessories", "Collectibles");
+    public static final List<String> SPORTS_TEAMS = Arrays.asList("Eagles", "Phillies", "76ers", "Flyers", "Union");
+    public static final List<String> CATEGORY = Arrays.asList("Jerseys", "T-shirts", "Sweatshirts", "Hats", "Accessories", "Collectibles");
 
     @Autowired
     private ProductDAO productDao;
@@ -71,8 +70,8 @@ public class AdminController {
 
         response.addObject("form", form);
 
-        response.addObject("sportsTeams", sportsTeams);
-        response.addObject("categoryList", category);
+        response.addObject("sportsTeams", SPORTS_TEAMS);
+        response.addObject("categoryList", CATEGORY);
 
         return response;
     }
@@ -82,8 +81,8 @@ public class AdminController {
         ModelAndView response = new ModelAndView("admin/addProduct");
         log.debug("In product controller - add product");
 
-        response.addObject("sportsTeams", sportsTeams);
-        response.addObject("categoryList", category);
+        response.addObject("sportsTeams", SPORTS_TEAMS);
+        response.addObject("categoryList", CATEGORY);
 
         return response;
     }
@@ -113,8 +112,8 @@ public class AdminController {
         // add to model to be used in html
         response.addObject("form", form);
 
-        response.addObject("sportsTeams", sportsTeams);
-        response.addObject("categoryList", category);
+        response.addObject("sportsTeams", SPORTS_TEAMS);
+        response.addObject("categoryList", CATEGORY);
         response.addObject("success", true);
 
         return response;
