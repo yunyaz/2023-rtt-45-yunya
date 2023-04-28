@@ -81,9 +81,10 @@ public class SlashController {
 
         if (authenticatedUserService.isAuthenticated()) {
             User user = authenticatedUserService.loadCurrentUser();
+            log.debug("userid " + user.getId());
             if (orderProductDao.findByUserIdAndProductIdInCompleteOrder(user.getId(), product.getId()).size() != 0) {
                 List<Integer> orderId = orderProductDao.findByUserIdAndProductIdInCompleteOrder(user.getId(), product.getId());
-                log.debug(orderId.toString());
+                log.debug("orderid " + orderId.toString());
                 response.addObject("ordered", true);
             }
         }

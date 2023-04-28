@@ -95,7 +95,7 @@
                         <p>${product.description}</p>
                     </div>
                 </form>
-                <c:if test="${ordered}">
+                <c:if test="${ordered == true}">
                     <div>
                         <p>
                             <button class="btn btn-dark" type="button" data-bs-toggle="collapse"
@@ -136,7 +136,7 @@
     </div>
 </section>
 
-<section class="pt-3 pb-5">
+<section class="py-5">
     <div class="container">
         <a id="readReviews"><h4>Reviews (${reviews.size()})</h4></a>
         <hr>

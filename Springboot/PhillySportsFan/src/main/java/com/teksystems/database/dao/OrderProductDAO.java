@@ -24,7 +24,7 @@ public interface OrderProductDAO extends JpaRepository<OrderProduct, Long> {
     @Query(value = "delete from order_product as op where op.id =:id", nativeQuery = true)
     void deleteById(Integer id);
 
-    @Query(value = "select o.id from users as u, orders as o, order_product as op where o.id = op.order_id " +
+    @Query(value = "select o.id from users as u, orders as o, order_product as op where u.id = o.user_id and o.id = op.order_id " +
             "and u.id = :userId and op.product_id = :productId and o.status = 'complete'", nativeQuery = true)
     List<Integer> findByUserIdAndProductIdInCompleteOrder(Integer userId, Integer productId);
 
