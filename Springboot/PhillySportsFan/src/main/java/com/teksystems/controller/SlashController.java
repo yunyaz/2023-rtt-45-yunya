@@ -42,7 +42,9 @@ public class SlashController {
 
         List<Product> products = productDao.getAllProducts();
 
-        response.addObject("productList", products);
+        Collections.shuffle(products);
+
+        response.addObject("productList", products.subList(0, 20));
 
         return response;
     }
@@ -114,6 +116,8 @@ public class SlashController {
         log.debug("In slash controller - team = " + teamName);
 
         List<Product> products = productDao.findBySportsTeam(teamName);
+//        Collections.shuffle(products);
+
         response.addObject("productList", products);
         response.addObject("teamName", teamName);
         response.addObject("categoryList", CATEGORY);

@@ -12,7 +12,7 @@
     </ul>
 </section>
 
-<section class="mt-5" style="height: 1150px">
+<section class="mt-5" <c:if test="${empty productList}"> style="height: 700px" </c:if>>
     <div class="container">
         <div class="row pt-3">
             <c:forEach items="${productList}" var="product">

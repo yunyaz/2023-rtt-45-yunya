@@ -12,12 +12,14 @@
         </c:if>
     </div>
     <c:if test="${success}">
-        <div class="container alert text-center" role="alert" style="width: 350px; height: 60px; color: black; background-color: #c5ddfd">
+        <div class="container alert text-center" role="alert" style="width: 350px; height: 100px; color: black; background-color: #c5ddfd">
             <c:if test="${empty form.id}">
                 <p>Product created successfully!</p>
+                <a class="my-3" style="color: black" href="/admin/edit/${product.id}">Edit product</a>
             </c:if>
             <c:if test="${not empty form.id}">
                 <p>Product edited successfully</p>
+                <div class="my-3"><a style="color: black" href="/admin/addProduct">Add product</a></div>
             </c:if>
         </div>
     </c:if>

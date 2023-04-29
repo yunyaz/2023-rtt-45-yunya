@@ -111,6 +111,7 @@ public class AdminController {
 
         // add to model to be used in html
         response.addObject("form", form);
+        response.addObject("product", product);
 
         response.addObject("sportsTeams", SPORTS_TEAMS);
         response.addObject("categoryList", CATEGORY);

@@ -74,7 +74,7 @@
                                 </select>
                             </div>
                             <c:if test="${product.quantityInStock > 0 && product.quantityInStock < 20}">
-                                <div class="col pt-2">
+                                <div class="col pt-2" style="color: mediumseagreen">
                                     Low Stock
                                 </div>
                             </c:if>
@@ -136,7 +136,7 @@
     </div>
 </section>
 
-<section class="py-5">
+<section class="pt-2 pb-5">
     <div class="container">
         <a id="readReviews"><h4>Reviews (${reviews.size()})</h4></a>
         <hr>
