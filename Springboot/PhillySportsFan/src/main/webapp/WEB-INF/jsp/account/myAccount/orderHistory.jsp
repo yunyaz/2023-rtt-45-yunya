@@ -59,6 +59,18 @@
                                             <h6>Status: ${order.getStatus()}</h6>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <c:forEach items="${order.getOrderProductList()}" var="orderProduct">
+                                            <div class="col-3 pt-3">
+                                                <a id="cartImageLink"
+                                                   href="/team/${orderProduct.getProduct().getSportsTeam()}/detail/${orderProduct.getProduct().getId()}">
+                                                    <img class="cartImage"
+                                                         src="${orderProduct.getProduct().getImgUrl()}"
+                                                         style="width: 100px">
+                                                </a>
+                                            </div>
+                                        </c:forEach>
+                                    </div>
                                     <hr>
                                 </c:if>
                             </c:forEach>

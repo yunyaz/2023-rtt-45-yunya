@@ -46,15 +46,17 @@
                                 <h3 class="pb-2">Default Address</h3>
                             </div>
                             <hr>
-                            <div class="row pt-3">
-                                <h6>${user.getFirstName()} ${user.getLastName()}</h6>
-                                <h6 class="mt-3">${user.getAddressLine1()}</h6>
-                                <c:if test="${not empty user.getAddressLine2()}">
-                                    <h6 class="mt-3">${user.getAddressLine2()}</h6>
-                                </c:if>
-                                <h6 class="mt-3">${user.getCity()}, ${user.getState()}, ${user.getZipcode()}</h6>
-                            </div>
-                            <hr>
+                            <c:if test="${not empty user.getAddressLine1()}">
+                                <div class="row pt-3">
+                                    <h6>${user.getFirstName()} ${user.getLastName()}</h6>
+                                    <h6 class="mt-3">${user.getAddressLine1()}</h6>
+                                    <c:if test="${not empty user.getAddressLine2()}">
+                                        <h6 class="mt-3">${user.getAddressLine2()}</h6>
+                                    </c:if>
+                                    <h6 class="mt-3">${user.getCity()}, ${user.getState()}, ${user.getZipcode()}</h6>
+                                    <hr>
+                                </div>
+                            </c:if>
                         </div>
                     </div>
                 </div>

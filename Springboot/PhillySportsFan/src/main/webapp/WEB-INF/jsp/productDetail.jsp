@@ -49,7 +49,7 @@
                     <div class="mb-5">
                         <div class="col-3">
                             <h6>Size</h6>
-                            <c:if test="${product.category eq 'Hats'}">
+                            <c:if test="${(product.category eq 'Hats') || (product.category eq 'Accessories') || (product.category eq 'Collectibles')}">
                                 <button type="button" class="btn" style="border-color: lightgrey">One Size</button>
                             </c:if>
                             <c:if test="${(product.category ne 'Hats') && (product.category ne 'Accessories') && (product.category ne 'Collectibles')}">
@@ -149,7 +149,9 @@
                     <div class="col-4">
                         <div class="mb-2">${review.getDate().toString().substring(0, 10)}</div>
                         <div>By ${review.getUser().getFirstName()}</div>
-                        <div>From ${review.getUser().getCity()}, ${review.getUser().getState()}</div>
+                        <c:if test="${not empty review.getUser().getCity()}">
+                            <div>From ${review.getUser().getCity()}, ${review.getUser().getState()}</div>
+                        </c:if>
                     </div>
                     <div class="col-8">
                         <div class="row mb-1">

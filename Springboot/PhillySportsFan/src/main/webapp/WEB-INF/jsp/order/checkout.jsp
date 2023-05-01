@@ -247,13 +247,13 @@
                         <c:forEach items="${order.getOrderProductList()}" var="orderProduct">
                             <div class="row">
                                 <div class="col-4">
-                                    <a id="cartImageLink" href="/detail/${orderProduct.getProduct().getId()}">
+                                    <a id="cartImageLink" href="/team/${orderProduct.getProduct().getSportsTeam()}/detail/${orderProduct.getProduct().getId()}">
                                         <img class="cartImage" src="${orderProduct.getProduct().getImgUrl()}"
                                              style="width: 100px">
                                     </a>
                                 </div>
                                 <div class="col-8">
-                                    <a id="cartProductLink" href="/detail/${orderProduct.getProduct().getId()}">
+                                    <a id="cartProductLink" href="/team/${orderProduct.getProduct().getSportsTeam()}/detail/${orderProduct.getProduct().getId()}">
                                         <h6>${orderProduct.getProduct().getProductName()}</h6></a>
                                     <h6>Size: ${orderProduct.getSize()}</h6>
                                     <div class="row">
